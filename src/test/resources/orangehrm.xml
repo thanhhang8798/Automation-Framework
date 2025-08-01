@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM - UI automation test" verbose="1">
+    <parameter name="webUrl" value="http://localhost:88/orangehrm"></parameter>
+
+    <test name="Run on Firefox broser">
+        <parameter name="browser" value="Firefox"></parameter>
+        <classes>
+            <class name="orangehrm.Login_08_Page_Navigation"/>
+        </classes>
+    </test>
+
+</suite>

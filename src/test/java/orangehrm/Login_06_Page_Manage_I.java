@@ -1,0 +1,74 @@
+package orangehrm;
+
+import core.BaseTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import pageObjects.orangeHRM.*;
+import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
+import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+
+public class Login_06_Page_Manage_I extends BaseTest {
+    // cách 2: page object class
+
+    private WebDriver driver;
+    String employeeID, adminUsername, adminPassword, employeeFirstName, employeeLastName;
+
+    @Parameters({"webUrl", "browser"})
+    @BeforeClass
+    public void beforeClass(String webUrl, String browserName) {
+        driver = getBrowserDriver(webUrl, browserName);
+
+        loginPage = new LoginPageObject(driver);
+
+        adminUsername = "automationfc";
+        adminPassword = "Auto222@@@";
+        employeeFirstName = "Bui";
+        employeeLastName = "Hang";
+    }
+
+    @Test
+    public void Employee_01_CreateNewEmployedd() {
+        // Action of login
+        loginPage.enterToUsernameTextbox(adminUsername);
+        loginPage.enterToPasswordTextbox(adminPassword);
+        dashboardPage = loginPage.clickToLoginButton();
+
+        Assert.assertTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
+        employeeListPage = dashboardPage.clickToPIMModule();
+
+        Assert.assertTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+        addEmployeePage = employeeListPage.clickToAddEmployeeButton();
+
+        Assert.assertTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+        addEmployeePage.enterToFirstNameTextbox(employeeFirstName);
+        addEmployeePage.enterToLastNameTextbox(employeeLastName);
+        employeeID = addEmployeePage.getEmployeeID();
+        personalDetalPage = addEmployeePage.clickToSaveButton();
+        // Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));
+
+        Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));
+        Assert.assertEquals(personalDetalPage.getFirstNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetalPage.getLastNameTextboxValue(),employeeLastName);
+        Assert.assertEquals(personalDetalPage.getEmployeeIDTextboxValue(), employeeID);
+    }
+
+    @Test
+    public void Employee_02_ContactDetail() {
+        contactDetailPage = personalDetalPage.clickContactDetailButton();
+    }
+    private LoginPageObject loginPage;
+    private DashboardPageObject dashboardPage;
+    private AddEmployeePageObject addEmployeePage;
+    private EmployeeListPageObject employeeListPage;
+    private PersonalDetailPageObject personalDetalPage;
+    private ContactDetailPageObject contactDetailPage;
+
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
+    }
+}
