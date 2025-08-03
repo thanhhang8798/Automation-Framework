@@ -14,7 +14,7 @@ import pageObjects.openCart.user.UserHomePO;
 import pageUIs.nopCommerce.user.NopCommerceBasePageUI;
 import pageUIs.openCart.admin.AdminCustomerPageUI;
 import pageUIs.openCart.user.UserRegisterPageUI;
-import pageUIs.orangeHRM.BasePageUI;
+import pageUIs.BasePageUI;
 
 
 import java.time.Duration;
@@ -280,6 +280,7 @@ public class BasePage {
 
     public void scrollToElementOnTop(WebDriver driver, String locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locator));
+        sleepInSecond(1);
     }
 
     public void scrollToElementOnDown(WebDriver driver, String locator) {

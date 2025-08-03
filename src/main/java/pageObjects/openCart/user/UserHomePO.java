@@ -17,10 +17,10 @@ public class UserHomePO extends BasePage {
     }
 
     public UserLoginPO clickToMyAccountLink() {
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-//                driver.findElement(By.cssSelector("ul.tabstrip-items")));
+        scrollToElementOnTop(driver, UserHomePageUI.MY_ACCOUNT_LINK);
         waitElementClickable(driver, UserHomePageUI.MY_ACCOUNT_LINK);
-        clickToElementByJS(driver, UserHomePageUI.MY_ACCOUNT_LINK);
+        clickToElement(driver, UserHomePageUI.MY_ACCOUNT_LINK);
+        // clickToElementByJS(driver, UserHomePageUI.MY_ACCOUNT_LINK);
         return PageGenerator.getPage(UserLoginPO.class, driver);
     }
 

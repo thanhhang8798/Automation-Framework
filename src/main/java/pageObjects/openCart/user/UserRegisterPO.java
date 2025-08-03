@@ -35,17 +35,18 @@ public class UserRegisterPO extends BasePage {
     public void clickToPolicyTogle() {
         scrollToElementOnTop(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
         waitElementClickable(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
-        clickToElementByJS(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
+        // clickToElementByJS(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
+        checkToCheckbox(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
     }
 
     public void ClickToContinueButton() {
         waitElementClickable(driver, UserRegisterPageUI.CONTINUE_REGISTER_BUTTON);
-        checkToCheckbox(driver, UserRegisterPageUI.CONTINUE_REGISTER_BUTTON);
+        clickToElement(driver, UserRegisterPageUI.CONTINUE_REGISTER_BUTTON);
     }
 
-    public String getRegisterResultTitle() {
-        waitElementVisible(driver, UserRegisterPageUI.REGISTER_RESULT_TITLE);
-        return getAttributeInDOM(driver, UserRegisterPageUI.REGISTER_RESULT_TITLE, "textContent");
+    public Boolean isRegisterSuccessMassage() {
+        waitElementVisible(driver, UserRegisterPageUI.REGISTER_RESULT_MASASGE);
+        return isElementDisplayed(driver, UserRegisterPageUI.REGISTER_RESULT_MASASGE);
     }
 
 

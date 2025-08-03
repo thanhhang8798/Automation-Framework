@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class BaseTest {
     private WebDriver driver;
@@ -34,5 +35,15 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
         return driver;
+    }
+
+    protected void closeBrowser() {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
+
+    protected int getRandomNumber() {
+        return new Random().nextInt(9999);
     }
 }

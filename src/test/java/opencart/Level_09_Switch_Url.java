@@ -14,14 +14,11 @@ import pageObjects.openCart.admin.AdminDashboardPO;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
 import pageObjects.openCart.user.UserLoginPO;
+import pageObjects.openCart.user.UserMyAccountPO;
 import pageObjects.openCart.user.UserRegisterPO;
 import java.util.Random;
 
 public class Level_09_Switch_Url extends BaseTest {
-    private WebDriver driver;
-    private String userUrl, adminUrl;
-    String firstName, lastName, email, userPassword, username, adminPassword;
-
     @Parameters({"userUrl", "adminUrl", "browser"})
     @BeforeClass
     public void beforeClass(String userUrl, String adminUrl, String browserName) {
@@ -34,14 +31,14 @@ public class Level_09_Switch_Url extends BaseTest {
 
         firstName = "Bui";
         lastName = "Hang";
-        email = "buihang" + new Random().nextInt(9999) + "@gmail.com";
-        userPassword = "Auto222@@@";
+        email = "buihang" + getRandomNumber() + "@gmail.com";
+        userPassword = "Auto111@@@";
         username = "automationfc";
         adminPassword = "Auto222@@@";
     }
 
     @Test
-    public void TC_01() throws InterruptedException {
+    public void TC_01_Login_Logout() {
         userLoginPage = userHomePage.clickToMyAccountLink();
         userRegisterPage = userLoginPage.clickToContinueButton();
         userRegisterPage.EnterToFirstNameTextbox(firstName);
@@ -50,10 +47,11 @@ public class Level_09_Switch_Url extends BaseTest {
         userRegisterPage.EnterToPasswordTextbox(userPassword);
         userRegisterPage.clickToPolicyTogle();
         userRegisterPage.ClickToContinueButton();
-//        Assert.assertEquals(userRegisterPage.getRegisterResultTitle(), "Your Account Has Been Created!");
+        Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage(), "Your Account Has Been Created!");
 
         userHomePage = userRegisterPage.clickToLogoutLinkAtUserSite(driver);
 
+        // user >> admin
         adminLoginPage = userHomePage.openAdminSite(adminUrl);
         adminLoginPage.enterToUserNameTextbox(username);
         adminLoginPage.enterToPasswordTextbox(adminPassword);
@@ -62,7 +60,13 @@ public class Level_09_Switch_Url extends BaseTest {
         adminCustomerPage = adminDashboardPage.openCustomerPage();
         adminLoginPage = adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
 
+        // admin >> user
         userHomePage = adminLoginPage.openUserSite(userUrl);
+        userLoginPage = userHomePage.clickToMyAccountLink();
+//        userLoginPage.enterToEmailAddressTextbox();
+//        userLoginPage.enterToPasswordTextbox();
+//        userMyAccountPage = userLoginPage.clickToLoginButton();
+//        Assert.assertTrue(userMyAccountPage.isMyAccountBreadcumDisplay());
     }
 
 //    @Test
@@ -75,10 +79,16 @@ public class Level_09_Switch_Url extends BaseTest {
         driver.quit();
     }
 
+    private WebDriver driver;
+    private String userUrl, adminUrl;
+    private String firstName, lastName, email, userPassword, username, adminPassword;
+
     private UserHomePO userHomePage;
     private UserLoginPO userLoginPage;
     private UserRegisterPO userRegisterPage;
+    private UserMyAccountPO userMyAccountPage;
     private AdminCustomerPO adminCustomerPage;
     private AdminDashboardPO adminDashboardPage;
     private AdminLoginPO adminLoginPage;
+
 }

@@ -8,7 +8,7 @@ public class UserRegisterPageUI {
     public static final String PRIVACY_POLICY_TOGGLE = "//input[@name='agree']";
     public static final String CONTINUE_REGISTER_BUTTON = "//button[text()='Continue']";
 
-    public static final String REGISTER_RESULT_TITLE = "//div[@id='content']/h1";
+    public static final String REGISTER_RESULT_MASASGE = "//div[@id='content']/h1";
     public static final String LOGOUT_LINK = "//aside[@id='column-right']//a[text()='Logout']";
     public static final String CONTINUE_BUTTON = "//a[text()='Continue']";
 }

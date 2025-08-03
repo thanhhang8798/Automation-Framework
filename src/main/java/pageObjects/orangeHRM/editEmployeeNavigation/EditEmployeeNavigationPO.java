@@ -3,7 +3,6 @@ package pageObjects.orangeHRM.editEmployeeNavigation;
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.orangeHRM.BasePageUI;
 import pageUIs.orangeHRM.editEmployeeNavigation.EditEmployeeNavigationPageUI;
 
 public class EditEmployeeNavigationPO extends BasePage {
