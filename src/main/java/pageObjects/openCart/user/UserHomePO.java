@@ -24,8 +24,5 @@ public class UserHomePO extends BasePage {
         return PageGenerator.getPage(UserLoginPO.class, driver);
     }
 
-    public AdminLoginPO openAdminSite(String adminUrl) {
-        openPageUrl(driver, adminUrl);
-        return PageGenerator.getPage(AdminLoginPO.class, driver);
-    }
+
 }

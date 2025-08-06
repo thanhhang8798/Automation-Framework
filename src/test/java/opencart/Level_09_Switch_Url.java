@@ -1,7 +1,7 @@
 package opencart;
 
 import core.BaseTest;
-import core.BaseTestUserAdmin;
+import core.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,7 +16,6 @@ import pageObjects.openCart.user.UserHomePO;
 import pageObjects.openCart.user.UserLoginPO;
 import pageObjects.openCart.user.UserMyAccountPO;
 import pageObjects.openCart.user.UserRegisterPO;
-import java.util.Random;
 
 public class Level_09_Switch_Url extends BaseTest {
     @Parameters({"userUrl", "adminUrl", "browser"})
@@ -33,8 +32,6 @@ public class Level_09_Switch_Url extends BaseTest {
         lastName = "Hang";
         email = "buihang" + getRandomNumber() + "@gmail.com";
         userPassword = "Auto111@@@";
-        username = "automationfc";
-        adminPassword = "Auto222@@@";
     }
 
     @Test
@@ -47,26 +44,29 @@ public class Level_09_Switch_Url extends BaseTest {
         userRegisterPage.EnterToPasswordTextbox(userPassword);
         userRegisterPage.clickToPolicyTogle();
         userRegisterPage.ClickToContinueButton();
-        Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage(), "Your Account Has Been Created!");
+        Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage());
 
         userHomePage = userRegisterPage.clickToLogoutLinkAtUserSite(driver);
 
         // user >> admin
-        adminLoginPage = userHomePage.openAdminSite(adminUrl);
-        adminLoginPage.enterToUserNameTextbox(username);
-        adminLoginPage.enterToPasswordTextbox(adminPassword);
+        adminLoginPage = userHomePage.openAdminOpenCartSite(driver, adminUrl);
+        adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
+        adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
 
         adminCustomerPage = adminDashboardPage.openCustomerPage();
         adminLoginPage = adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
 
         // admin >> user
-        userHomePage = adminLoginPage.openUserSite(userUrl);
+        userHomePage = adminLoginPage.openUserOpenCartSite(driver,userUrl);
         userLoginPage = userHomePage.clickToMyAccountLink();
-//        userLoginPage.enterToEmailAddressTextbox();
-//        userLoginPage.enterToPasswordTextbox();
-//        userMyAccountPage = userLoginPage.clickToLoginButton();
-//        Assert.assertTrue(userMyAccountPage.isMyAccountBreadcumDisplay());
+        userLoginPage.enterToEmailAddressTextbox(email);
+        userLoginPage.enterToPasswordTextbox(userPassword);
+        userMyAccountPage = userLoginPage.clickToLoginButton();
+        Assert.assertTrue(userMyAccountPage.isAccountPageDisplay());
+
+        // user >> admin
+        adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
     }
 
 //    @Test
@@ -81,7 +81,7 @@ public class Level_09_Switch_Url extends BaseTest {
 
     private WebDriver driver;
     private String userUrl, adminUrl;
-    private String firstName, lastName, email, userPassword, username, adminPassword;
+    private String firstName, lastName, email, userPassword;
 
     private UserHomePO userHomePage;
     private UserLoginPO userLoginPage;
