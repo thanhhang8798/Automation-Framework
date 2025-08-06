@@ -1,21 +1,22 @@
-package pageObjects.openCart.admin;
+package pageObjects.nopCommerce.admin;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageObjects.openCart.user.UserHomePO;
-import pageUIs.openCart.admin.AdminLoginPageUI;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageUIs.nopCommerce.admin.AdminLoginPageUI;
+import pageUIs.nopCommerce.user.UserLoginPageUI;
 
 public class AdminLoginPO extends BasePage {
-    private WebDriver driver;
+    WebDriver driver;
 
     public AdminLoginPO(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void enterToUserNameTextbox(String userName) {
-        waitElementVisible(driver, AdminLoginPageUI.USERNAME_TEXTBOX);
-        sendKeyToElement(driver, AdminLoginPageUI.USERNAME_TEXTBOX, userName);
+    public void enterToEmailTextbox(String email) {
+        waitElementVisible(driver, AdminLoginPageUI.EMAIL_TEXTBOX);
+        sendKeyToElement(driver, AdminLoginPageUI.EMAIL_TEXTBOX, email);
     }
 
     public void enterToPasswordTextbox(String password) {
@@ -24,10 +25,8 @@ public class AdminLoginPO extends BasePage {
     }
 
     public AdminDashboardPO clickToLoginButton() {
-        waitElementVisible(driver, AdminLoginPageUI.ADMIN_LOGIN_BUTTON);
-        clickToElement(driver, AdminLoginPageUI.ADMIN_LOGIN_BUTTON);
+        waitElementClickable(driver, UserLoginPageUI.LOGIN_BUTTON);
+        clickToElement(driver, AdminLoginPageUI.LOGIN_BUTTON);
         return PageGenerator.getPage(AdminDashboardPO.class, driver);
     }
-
-
 }

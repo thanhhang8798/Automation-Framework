@@ -2,7 +2,12 @@ package pageUIs;
 
 public class BasePageUI {
     // orangehrm
-    public static final String SPINNER_ICON = "//div[@class='oxd-loading-spinner']";
+    public static final String SPINNER_ICON = "xpath=//div[@class='oxd-loading-spinner']";
 
     // opencart
+
+    // nopcommerce
+    public static final String ADMIN_NOPCOMMERCE_LOGOUT_LINK = "xpath=//a[text()='Logout']";
+    public static final String USER_NOPCOMMERCE_LOGIN_LINK = "xpath=//a[@class='ico-login']";
+    public static final String REGISTER_LINK = "xpath=//a[@class='ico-register']";
 }

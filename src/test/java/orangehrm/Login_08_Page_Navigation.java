@@ -1,6 +1,7 @@
 package orangehrm;
 
 import core.BaseTest;
+import core.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -19,7 +20,7 @@ import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
 
 public class Login_08_Page_Navigation extends BaseTest {
     private WebDriver driver;
-    String employeeID, adminUsername, adminPassword, employeeFirstName, employeeLastName;
+    String employeeID, employeeFirstName, employeeLastName;
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
@@ -28,8 +29,6 @@ public class Login_08_Page_Navigation extends BaseTest {
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 
-        adminUsername = "automationfc";
-        adminPassword = "Auto222@@@";
         employeeFirstName = "Bui";
         employeeLastName = "Hang";
     }
@@ -37,8 +36,8 @@ public class Login_08_Page_Navigation extends BaseTest {
     @Test
     public void Employee_01_CreateNewEmployedd() {
         // Action of login
-        loginPage.enterToUsernameTextbox(adminUsername);
-        loginPage.enterToPasswordTextbox(adminPassword);
+        loginPage.enterToUsernameTextbox(GlobalConstants.ADMIN_ORANGEHRM_USERNAME);
+        loginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_ORANGEHRM_PASSWORD);
         dashboardPage = loginPage.clickToLoginButton();
 
         Assert.assertTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
