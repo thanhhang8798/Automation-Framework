@@ -69,10 +69,33 @@ public class Level_09_Switch_Url extends BaseTest {
         adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
     }
 
-//    @Test
-//    public void Employee_02_Switch_Page() {
-//
-//    }
+    @Test
+    public void Employee_02_Switch_Page() {
+        userLoginPage = userHomePage.clickToMyAccountLink();
+        userRegisterPage = userLoginPage.clickToContinueButton();
+        userRegisterPage.EnterToFirstNameTextbox(firstName);
+        userRegisterPage.EnterToLastNameTextbox(lastName);
+        userRegisterPage.EnterToEmailTextbox(email);
+        userRegisterPage.EnterToPasswordTextbox(userPassword);
+        userRegisterPage.clickToPolicyTogle();
+        userRegisterPage.ClickToContinueButton();
+        Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage());
+
+        adminLoginPage = userRegisterPage.openAdminOpenCartSite(driver, adminUrl);
+        adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
+        adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
+
+        adminCustomerPage = adminDashboardPage.openCustomerPage();
+
+        // admin >> user
+        userHomePage = adminLoginPage.openUserOpenCartSite(driver,userUrl);
+        userMyAccountPage = userHomePage.clickToMyAccountLink();
+
+        // user >> admin
+        adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
+
+    }
 
     @AfterClass
     public void afterClass() {
