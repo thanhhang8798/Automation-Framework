@@ -19,4 +19,11 @@ public class AdminDashboardPO extends BasePage {
         clickToElement(driver, AdminDashboardPageUI.CUSTOMERS_LINK_ITEM);
         return PageGenerator.getPage(AdminCustomerPO.class, driver);
     }
+
+    public boolean isDashboardBreadcrumbDisplayed() {
+        waitElementVisible(driver, AdminDashboardPageUI.DASHBOARD_BREADCRUMB);
+        return isElementDisplayed(driver, AdminDashboardPageUI.DASHBOARD_BREADCRUMB);
+    }
+
+
 }

@@ -43,6 +43,12 @@ public class BaseTest {
         }
     }
 
+    protected void closeBrowser(WebDriver driver) {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
+
     protected int getRandomNumber() {
         return new Random().nextInt(9999);
     }
