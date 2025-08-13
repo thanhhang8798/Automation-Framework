@@ -1,4 +1,4 @@
-package nopcommerce;
+package jquery;
 
 import core.BaseTest;
 import core.GlobalConstants;

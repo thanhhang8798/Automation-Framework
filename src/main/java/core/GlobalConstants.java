@@ -2,7 +2,7 @@ package core;
 
 public class GlobalConstants {
     // wait infor
-    public static final int LONG_TIMEOUT = 30;
+    public static final int LONG_TIMEOUT = 20;
     public static final int SHORT_TIMEOUT = 10;
 
     // nopcommerce

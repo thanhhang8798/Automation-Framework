@@ -17,7 +17,7 @@ import pageObjects.openCart.user.UserLoginPO;
 import pageObjects.openCart.user.UserMyAccountPO;
 import pageObjects.openCart.user.UserRegisterPO;
 
-public class Level_09_Switch_Url extends BaseTest {
+public class Level_10_Multiple_Window_Tab extends BaseTest {
     @Parameters({"userUrl", "adminUrl", "browser"})
     @BeforeClass
     public void beforeClass(String userUrl, String adminUrl, String browserName) {
@@ -34,45 +34,8 @@ public class Level_09_Switch_Url extends BaseTest {
         userPassword = "Auto111@@@";
     }
 
-    //@Test
-    public void TC_01_SwitchPage_Logout() {
-        userHomePage.clickToMyAccountLink();
-        userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
-        userRegisterPage = userLoginPage.clickToContinueButton();
-        userRegisterPage.EnterToFirstNameTextbox(firstName);
-        userRegisterPage.EnterToLastNameTextbox(lastName);
-        userRegisterPage.EnterToEmailTextbox(email);
-        userRegisterPage.EnterToPasswordTextbox(userPassword);
-        userRegisterPage.clickToPolicyTogle();
-        userRegisterPage.ClickToContinueButton();
-        Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage());
-
-        userHomePage = userRegisterPage.clickToLogoutLinkAtUserSite(driver);
-
-        // user >> admin: trước khi chuyển trang có logout
-        adminLoginPage = userHomePage.openAdminOpenCartSite(driver, adminUrl);
-        adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
-        adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
-        adminDashboardPage = adminLoginPage.clickToLoginButton();
-
-        adminCustomerPage = adminDashboardPage.openCustomerPage();
-        adminLoginPage = adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
-
-        // admin >> user
-        userHomePage = adminLoginPage.openUserOpenCartSite(driver,userUrl);
-        userHomePage.clickToMyAccountLink();
-        userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
-        userLoginPage.enterToEmailAddressTextbox(email);
-        userLoginPage.enterToPasswordTextbox(userPassword);
-        userMyAccountPage = userLoginPage.clickToLoginButton();
-        Assert.assertTrue(userMyAccountPage.isMyAccountPageDisplay());
-
-        // user >> admin
-        adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
-    }
-
     @Test
-    public void Employee_02_SwitchPage_NoLogout() {
+    public void TC_01_Multiple_Tab() {
         userHomePage.clickToMyAccountLink();
         userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
         userRegisterPage = userLoginPage.clickToContinueButton();
@@ -84,8 +47,11 @@ public class Level_09_Switch_Url extends BaseTest {
         userRegisterPage.ClickToContinueButton();
         Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage());
 
-        // user >> admin: không cần logout user
-        adminLoginPage = userHomePage.openAdminOpenCartSite(driver, adminUrl);
+        // user >> admin: open new tab
+        userWindowID = userRegisterPage.getCurrentWindowID(driver);
+        userRegisterPage.openUrlByNewTab(driver, adminUrl);
+        adminLoginPage = PageGenerator.getPage(AdminLoginPO.class, driver);
+
         adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
         adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
@@ -93,15 +59,24 @@ public class Level_09_Switch_Url extends BaseTest {
         adminCustomerPage = adminDashboardPage.openCustomerPage();
 
         // admin >> user
-        userHomePage = adminCustomerPage.openUserOpenCartSite(driver, userUrl);
+        adminWindowID = adminCustomerPage.getCurrentWindowID(driver);
+            // muốn mở trang user thì truyền adminID vào
+        adminCustomerPage.switchToWindowByID(driver, adminWindowID);
+        userRegisterPage = PageGenerator.getPage(UserRegisterPO.class, driver);
+
+        userHomePage = userRegisterPage.openUserOpenCartHomeLogo(driver);
         userHomePage.clickToMyAccountLink();
         userMyAccountPage = PageGenerator.getPage(UserMyAccountPO.class, driver);
         Assert.assertTrue(userMyAccountPage.isMyAccountPageDisplay());
 
         // user >> admin
-        adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
-
+            // muốn mở trang admin thì truyền userID vào
+        userMyAccountPage.switchToWindowByID(driver, userWindowID);
+        adminCustomerPage = PageGenerator.getPage(AdminCustomerPO.class, driver);
+        adminCustomerPage.sleepInSecond(2);
+        Assert.assertTrue(adminCustomerPage.isCustomerBreadcrumbDisplayed());
     }
+
 
     @AfterClass
     public void afterClass() {
@@ -111,6 +86,7 @@ public class Level_09_Switch_Url extends BaseTest {
     private WebDriver driver;
     private String userUrl, adminUrl;
     private String firstName, lastName, email, userPassword;
+    private String userWindowID, adminWindowID;
 
     private UserHomePO userHomePage;
     private UserLoginPO userLoginPage;

@@ -11,7 +11,7 @@ public class UserMyAccountPO extends BasePage {
         this.driver = driver;
     }
 
-    public boolean isAccountPageDisplay() {
+    public boolean isMyAccountPageDisplay() {
         waitElementVisible(driver, UserMyAccountPageUI.ACCOUNT_BREADCRUMB);
         return isElementDisplayed(driver, UserMyAccountPageUI.ACCOUNT_BREADCRUMB);
     }
