@@ -1,6 +1,6 @@
 package pageUIs.jquery;
 
-public class TablePageUI {
+public class HomePageUI {
     public static final String DYNAMIC_PAGE_LINK = "xpath=//li[@class='qgrd-pagination-page']/a[text()='%s']";
     public static final String DYNAMIC_TEXTBOX_BY_HEADER_NAME = "xpath=//div[text()='%s']/parent::div/following-sibling::input";
     public static final String DYNAMIC_ROW_DATA_VALUE = "xpath=//td[@data-key='females' and text()='%s']"
@@ -22,4 +22,7 @@ public class TablePageUI {
     public static final String DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//input[@type='checkbox']";
     public static final String DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]//button[@title='%s']";
 
+    public static final String DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME = "xpath=//p[@class='name' and text()='%s']";
+    public static final String START_BUTTON = "css=button.start";
+    public static final String DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME = "css=p.name>a[title='%s']";
 }

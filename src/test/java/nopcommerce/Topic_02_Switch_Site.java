@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.nopCommerce.admin.AdminDashboardPO;
 import pageObjects.nopCommerce.admin.AdminLoginPO;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserCustomerInforPO;
+import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.*;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;

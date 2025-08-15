@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.jquery.TablePO;
+import pageObjects.jquery.HomePO;
 
 public class Topic_05_Data_Table_Index extends BaseTest {
 
@@ -16,23 +16,23 @@ public class Topic_05_Data_Table_Index extends BaseTest {
     public void beforeClass(String webUrl, String browserName) {
         driver = getBrowserDriver(webUrl, browserName);
 
-        tablePage = PageGenerator.getPage(TablePO.class, driver);
+        homePage = PageGenerator.getPage(HomePO.class, driver);
     }
 
     @Test
     public void Table_01_() {
-        tablePage.clickToLoadDataButton();
-        tablePage.enterToTextboxByIndex("4", "Contact Person", "Michael Jackson");
-        tablePage.enterToTextboxByIndex("2", "Company", "MJ company");
-        tablePage.enterToTextboxByIndex("1", "Order Placed", "333");
+        homePage.clickToLoadDataButton();
+        homePage.enterToTextboxByIndex("4", "Contact Person", "Michael Jackson");
+        homePage.enterToTextboxByIndex("2", "Company", "MJ company");
+        homePage.enterToTextboxByIndex("1", "Order Placed", "333");
 
-        tablePage.selectToDropdownByIndex("6", "Country", "Hong Kong");
-        tablePage.checkToCheckboxByIndex("6", "NPO?", true);
-        tablePage.checkToCheckboxByIndex("5", "NPO?", false);
-        tablePage.clickToIconByIndex("8", "Insert Row Above");
-        tablePage.clickToIconByIndex("6", "Remove Current Row");
-        tablePage.clickToIconByIndex("4", "Move Up");
-        tablePage.clickToIconByIndex("7", "Move Down");
+        homePage.selectToDropdownByIndex("6", "Country", "Hong Kong");
+        homePage.checkToCheckboxByIndex("6", "NPO?", true);
+        homePage.checkToCheckboxByIndex("5", "NPO?", false);
+        homePage.clickToIconByIndex("8", "Insert Row Above");
+        homePage.clickToIconByIndex("6", "Remove Current Row");
+        homePage.clickToIconByIndex("4", "Move Up");
+        homePage.clickToIconByIndex("7", "Move Down");
     }
 
 
@@ -44,5 +44,5 @@ public class Topic_05_Data_Table_Index extends BaseTest {
 
     private WebDriver driver;
 
-    private TablePO tablePage;
+    private HomePO homePage;
 }

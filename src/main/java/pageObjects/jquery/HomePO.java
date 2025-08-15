@@ -1,0 +1,115 @@
+package pageObjects.jquery;
+
+import core.BasePage;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import pageUIs.jquery.HomePageUI;
+
+import java.util.List;
+
+public class HomePO extends BasePage {
+    WebDriver driver;
+
+    public HomePO(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void openPageNumber(String pageNumber) {
+        waitElementClickable(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
+        clickToElement(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
+    }
+
+    public boolean isPageNumberDisplayed(String pageNumber) {
+        waitElementVisible(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
+        return getElementDOMAttribute(driver, HomePageUI.DYNAMIC_PAGE_LINK, "class", pageNumber).endsWith("active");
+    }
+
+    public void enterToTextboxByHeaderName(String headerName, String valueToSendKey) {
+        waitElementVisible(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME, headerName);
+        sendKeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME, valueToSendKey, headerName);
+        sendKeyBoardToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME, Keys.ENTER, headerName);
+
+    }
+
+    public boolean isRowDataValueDisplayed(String females, String country, String males, String total) {
+        waitElementVisible(driver, HomePageUI.DYNAMIC_ROW_DATA_VALUE, females, country, males, total);
+        return isElementDisplayed(driver, HomePageUI.DYNAMIC_ROW_DATA_VALUE, females, country, males, total);
+    }
+
+    public void removeRowByCountryName(String countryName) {
+        waitElementClickable(driver, HomePageUI.DYNAMIC_REMOVE_BUTTON_BY_COUNTTRY_NAME, countryName);
+        clickToElement(driver, HomePageUI.DYNAMIC_REMOVE_BUTTON_BY_COUNTTRY_NAME, countryName);
+    }
+
+    public Object listRowNumber(String countryName) {
+        return getListElementNumber(driver, HomePageUI.DYNAMIC_REMOVE_BUTTON_BY_COUNTTRY_NAME, countryName);
+    }
+
+    public void editRowByCountryName(String countryName) {
+        waitElementClickable(driver, HomePageUI.DYNAMIC_EDIT_BUTTON_BY_COUNTTRY_NAME, countryName);
+        clickToElement(driver, HomePageUI.DYNAMIC_EDIT_BUTTON_BY_COUNTTRY_NAME, countryName);
+    }
+
+    public boolean isEditPopupDisplay() {
+        sleepInSecond(1);
+        // waitElementPresence(driver, TablePageUI.EDIT_POPUP);
+        return isElementDisplayed(driver, HomePageUI.EDIT_POPUP);
+    }
+
+    public void clickToLoadDataButton() {
+        waitElementClickable(driver, HomePageUI.LOAD_DATA_BUTTON);
+        clickToElement(driver, HomePageUI.LOAD_DATA_BUTTON);
+    }
+
+    public void enterToTextboxByIndex(String rowIndex, String columnName, String valueToSendkey) {
+        // lay column index
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+
+        // convert index qua text (String)
+        String columnIndex = String.valueOf(columnIndexNumber);
+
+        // truyền 2 giá trị rowIndex/ columnIndex vào locator để tương tác
+        sendKeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
+    }
+
+    public void selectToDropdownByIndex(String rowIndex, String columnName, String valueToSelect) {
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        String columnIndex = String.valueOf(columnIndexNumber);
+        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, columnIndex);
+    }
+
+    public void checkToCheckboxByIndex(String rowIndex, String columnName, boolean checkOrUncheck) {
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        String columnIndex = String.valueOf(columnIndexNumber);
+        checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+        if(checkOrUncheck) {
+            checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+        } else {
+            uncheckToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+        }
+    }
+
+    public void clickToIconByIndex(String rowIndex, String iconName) {
+        waitElementClickable(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX, rowIndex, iconName);
+        clickToElement(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX, rowIndex, iconName);
+    }
+
+    public void isFileLoadedByName(String fileName) {
+        waitElementVisible(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
+        isElementDisplayed(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
+    }
+
+    public void clickToStartButton() {
+        List<WebElement> startButtons = getListElement(driver, HomePageUI.START_BUTTON);
+        for(WebElement button : startButtons) {
+            button.click();
+            sleepInSecond(3);
+        }
+    }
+
+    public void isFileUploadedByName(String fileName) {
+        waitElementVisible(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
+        isElementDisplayed(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
+    }
+}

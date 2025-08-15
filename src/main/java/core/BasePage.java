@@ -170,11 +170,11 @@ public class BasePage {
         return driver.findElement(getByLocator(locator));
     }
 
-    private List<WebElement> getListElement(WebDriver driver, String locator) {
+    public List<WebElement> getListElement(WebDriver driver, String locator) {
         return driver.findElements(getByLocator(locator));
     }
 
-    private List<WebElement> getListElement(WebDriver driver, String locator, String... restParameter) {
+    public List<WebElement> getListElement(WebDriver driver, String locator, String... restParameter) {
         return driver.findElements(getByLocator(castParameter(locator, restParameter)));
     }
 
@@ -397,6 +397,19 @@ public class BasePage {
                         , getWebElement(driver, locator));
     }
 
+    public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+        // lấy ra đường dẫ của thư mục upload file
+        String filePath = GlobalConstants.UPLOAD_PATH;
+        String fullFileName = "";
+        for (String file : fileNames) {
+            fullFileName += filePath + file + "\n";
+        }
+
+        // cắt kí tự xuống dòng (\n) đầu cuối
+        fullFileName = fullFileName.trim();
+        getWebElement(driver, BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
+    }
+
 
     public WebElement waitElementVisible(WebDriver driver, String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
@@ -419,7 +432,6 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions
                 .elementToBeSelected(getByLocator(castParameter(locator, restParameter))));
     }
-
 
     public WebElement waitElementClickable(WebDriver driver, String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
