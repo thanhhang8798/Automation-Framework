@@ -2,8 +2,18 @@ package core;
 
 public class GlobalConstants {
     // wait infor
-    public static final int LONG_TIMEOUT = 30;
+    public static final int LONG_TIMEOUT = 20;
     public static final int SHORT_TIMEOUT = 10;
+
+    // system infor
+    public static final String PROJECT_PATH = System.getProperty("user.dir");
+    public static final String OS_NAME = System.getProperty("os.name");
+    public static final String SEPARATOR = System.getProperty("file.separator");
+        // hoặc viết ngắn gọn thành: public static final String SEPARATOR = "file.seperator";
+
+    // download/ upload file
+    public static final String UPLOAD_PATH = PROJECT_PATH  + SEPARATOR + "uploadFiles" + SEPARATOR;
+    public static final String DOWNLOAD_PATH = PROJECT_PATH  + SEPARATOR + "downloadFiles" + SEPARATOR;
 
     // nopcommerce
     public static final String ADMIN_NOPCOMMERCE_EMAIL = "thanhhang8798@gmail.com";

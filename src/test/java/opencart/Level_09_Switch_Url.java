@@ -34,9 +34,10 @@ public class Level_09_Switch_Url extends BaseTest {
         userPassword = "Auto111@@@";
     }
 
-    @Test
-    public void TC_01_Login_Logout() {
-        userLoginPage = userHomePage.clickToMyAccountLink();
+    //@Test
+    public void TC_01_SwitchPage_Logout() {
+        userHomePage.clickToMyAccountLink();
+        userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
         userRegisterPage = userLoginPage.clickToContinueButton();
         userRegisterPage.EnterToFirstNameTextbox(firstName);
         userRegisterPage.EnterToLastNameTextbox(lastName);
@@ -48,7 +49,7 @@ public class Level_09_Switch_Url extends BaseTest {
 
         userHomePage = userRegisterPage.clickToLogoutLinkAtUserSite(driver);
 
-        // user >> admin
+        // user >> admin: trước khi chuyển trang có logout
         adminLoginPage = userHomePage.openAdminOpenCartSite(driver, adminUrl);
         adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
         adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
@@ -59,19 +60,21 @@ public class Level_09_Switch_Url extends BaseTest {
 
         // admin >> user
         userHomePage = adminLoginPage.openUserOpenCartSite(driver,userUrl);
-        userLoginPage = userHomePage.clickToMyAccountLink();
+        userHomePage.clickToMyAccountLink();
+        userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
         userLoginPage.enterToEmailAddressTextbox(email);
         userLoginPage.enterToPasswordTextbox(userPassword);
         userMyAccountPage = userLoginPage.clickToLoginButton();
-        Assert.assertTrue(userMyAccountPage.isAccountPageDisplay());
+        Assert.assertTrue(userMyAccountPage.isMyAccountPageDisplay());
 
         // user >> admin
         adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);
     }
 
     @Test
-    public void Employee_02_Switch_Page() {
-        userLoginPage = userHomePage.clickToMyAccountLink();
+    public void Employee_02_SwitchPage_NoLogout() {
+        userHomePage.clickToMyAccountLink();
+        userLoginPage = PageGenerator.getPage(UserLoginPO.class, driver);
         userRegisterPage = userLoginPage.clickToContinueButton();
         userRegisterPage.EnterToFirstNameTextbox(firstName);
         userRegisterPage.EnterToLastNameTextbox(lastName);
@@ -81,16 +84,19 @@ public class Level_09_Switch_Url extends BaseTest {
         userRegisterPage.ClickToContinueButton();
         Assert.assertTrue(userRegisterPage.isRegisterSuccessMassage());
 
-        adminLoginPage = userRegisterPage.openAdminOpenCartSite(driver, adminUrl);
+        // user >> admin: không cần logout user
+        adminLoginPage = userHomePage.openAdminOpenCartSite(driver, adminUrl);
         adminLoginPage.enterToUserNameTextbox(GlobalConstants.ADMIN_OPENCART_USERNAME);
         adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_OPENCART_PASSWORD);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
-
+        Assert.assertTrue(adminDashboardPage.isDashboardBreadcrumbDisplayed());
         adminCustomerPage = adminDashboardPage.openCustomerPage();
 
         // admin >> user
-        userHomePage = adminLoginPage.openUserOpenCartSite(driver,userUrl);
-        userMyAccountPage = userHomePage.clickToMyAccountLink();
+        userHomePage = adminCustomerPage.openUserOpenCartSite(driver, userUrl);
+        userHomePage.clickToMyAccountLink();
+        userMyAccountPage = PageGenerator.getPage(UserMyAccountPO.class, driver);
+        Assert.assertTrue(userMyAccountPage.isMyAccountPageDisplay());
 
         // user >> admin
         adminLoginPage = userMyAccountPage.openAdminOpenCartSite(driver, adminUrl);

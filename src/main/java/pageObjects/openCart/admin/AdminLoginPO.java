@@ -14,13 +14,13 @@ public class AdminLoginPO extends BasePage {
     }
 
     public void enterToUserNameTextbox(String userName) {
-        waitElementVisible(driver, AdminLoginPageUI.USERNAME_TEXTBOX);
-        sendKeyToElement(driver, AdminLoginPageUI.USERNAME_TEXTBOX, userName);
+        waitElementVisible(driver, AdminLoginPageUI.ADMIN_USERNAME_TEXTBOX);
+        sendKeyToElement(driver, AdminLoginPageUI.ADMIN_USERNAME_TEXTBOX, userName);
     }
 
     public void enterToPasswordTextbox(String password) {
-        waitElementVisible(driver, AdminLoginPageUI.PASSWORD_TEXTBOX);
-        sendKeyToElement(driver, AdminLoginPageUI.PASSWORD_TEXTBOX, password);
+        waitElementVisible(driver, AdminLoginPageUI.ADMIN_PASSWORD_TEXTBOX);
+        sendKeyToElement(driver, AdminLoginPageUI.ADMIN_PASSWORD_TEXTBOX, password);
     }
 
     public AdminDashboardPO clickToLoginButton() {

@@ -13,14 +13,10 @@ import pageObjects.nopCommerce.admin.AdminDashboardPO;
 import pageObjects.nopCommerce.admin.AdminLoginPO;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserCustomerInforPO;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserAddressesPO;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserBackInStockSubscriptionsPO;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserDownloadableProductsPO;
-import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserOrdersPO;
+import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.*;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class Topic_03_Dynamic_Locator extends BaseTest {
+public class Topic_03_Dynamic_Locator extends BaseTest{
     @Parameters({"userUrl", "adminUrl", "browser"})
     @BeforeClass
     public void beforeClass(String userUrl, String adminUrl, String browserName) {
@@ -104,3 +100,4 @@ public class Topic_03_Dynamic_Locator extends BaseTest {
     private AdminDashboardPO adminDashbpardPage;
     private AdminLoginPO adminLoginPage;
 }
+
