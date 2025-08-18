@@ -101,6 +101,7 @@ public class HomePO extends BasePage {
     }
 
     public void clickToStartButton() {
+        waitListElementVisible(driver, HomePageUI.START_BUTTON);
         List<WebElement> startButtons = getListElement(driver, HomePageUI.START_BUTTON);
         for(WebElement button : startButtons) {
             button.click();

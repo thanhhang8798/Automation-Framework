@@ -23,6 +23,6 @@ public class HomePageUI {
     public static final String DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]//button[@title='%s']";
 
     public static final String DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME = "xpath=//p[@class='name' and text()='%s']";
-    public static final String START_BUTTON = "css=button.start";
+    public static final String START_BUTTON = "css=td>button.start";
     public static final String DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME = "css=p.name>a[title='%s']";
 }
