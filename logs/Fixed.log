@@ -1,0 +1,57 @@
+[20-08-2025 16:15:27.473 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 01: Open Register page
+[20-08-2025 16:15:28.420 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 02: enter to First name textboxBui
+[20-08-2025 16:15:28.538 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 03: enter to lastName textboxHang
+[20-08-2025 16:15:28.613 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 04: enter to email textboxbuihang2720@gmail.com
+[20-08-2025 16:15:28.700 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 05: enter to password textboxAuto222@@@
+[20-08-2025 16:15:28.771 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 06: enter to confirmPassword textboxAuto222@@@
+[20-08-2025 16:15:28.850 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 07: click to Register button
+[20-08-2025 16:15:29.537 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 08: verify register success massage
+[20-08-2025 16:15:29.587 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:15:29.587 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 09: Open admin page
+[20-08-2025 16:15:29.934 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 10: enter to admin email textbox
+[20-08-2025 16:15:30.046 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 11: enter to admin password textbox
+[20-08-2025 16:15:30.135 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 12: click to login button
+[20-08-2025 16:15:34.638 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 13: verify register success massage
+[20-08-2025 16:15:34.717 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:15:34.717 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 12: click to logout button
+[20-08-2025 16:15:37.889 INFO nopcommerce.Topic_08_Log4J] - TC_02_Verify_User_Account - Step 13: Open user page
+[20-08-2025 16:15:38.150 INFO nopcommerce.Topic_08_Log4J] - TC_02_Verify_User_Account - Step 14: click to login button
+[20-08-2025 16:15:39.273 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:15:39.300 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:15:39.326 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:16:30.045 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 01: Open Register page
+[20-08-2025 16:16:30.462 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 02: enter to First name textboxBui
+[20-08-2025 16:16:30.606 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 03: enter to lastName textboxHang
+[20-08-2025 16:16:30.686 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 04: enter to email textboxbuihang2056@gmail.com
+[20-08-2025 16:16:30.769 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 05: enter to password textboxAuto222@@@
+[20-08-2025 16:16:30.843 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 06: enter to confirmPassword textboxAuto222@@@
+[20-08-2025 16:16:30.922 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 07: click to Register button
+[20-08-2025 16:16:31.242 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 08: verify register success massage
+[20-08-2025 16:16:31.304 INFO nopcommerce.Topic_08_Log4J] - ----------------- FAILED -----------------
+[20-08-2025 16:16:31.304 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 09: Open admin page
+[20-08-2025 16:16:31.547 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 10: enter to admin email textbox
+[20-08-2025 16:16:31.657 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 11: enter to admin password textbox
+[20-08-2025 16:16:31.733 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 12: click to login button
+[20-08-2025 16:16:32.604 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 13: verify register success massage
+[20-08-2025 16:16:32.776 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:16:32.777 INFO nopcommerce.Topic_08_Log4J] - TC_01_Register - Step 12: click to logout button
+[20-08-2025 16:16:36.004 INFO nopcommerce.Topic_08_Log4J] - TC_02_Verify_User_Account - Step 13: Open user page
+[20-08-2025 16:16:36.285 INFO nopcommerce.Topic_08_Log4J] - TC_02_Verify_User_Account - Step 14: click to login button
+[20-08-2025 16:16:37.470 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:16:37.495 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[20-08-2025 16:16:37.521 INFO nopcommerce.Topic_08_Log4J] - ----------------- PASSED -----------------
+[25-08-2025 16:46:13.747 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- FAILED -----------------
+[25-08-2025 16:46:17.918 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 16:46:23.048 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 16:46:23.077 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 16:46:23.109 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:30:07.576 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- FAILED -----------------
+[25-08-2025 17:30:09.847 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:30:14.945 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:30:14.988 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:30:15.020 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:32:54.298 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- FAILED -----------------
+[25-08-2025 17:32:56.590 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:33:02.080 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:33:02.112 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
+[25-08-2025 17:33:02.139 INFO nopcommerce.Topic_09_Allure_Report] - ----------------- PASSED -----------------
