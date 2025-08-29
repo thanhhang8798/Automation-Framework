@@ -12,7 +12,7 @@ public class EditEmployeeNavigationPO extends BasePage {
         this.driver = driver;
     }
 
-    // open pages of personal detail
+    // cách 1: open pages of personal detail
     public JobPageObject openJobPage() {
         waitElementClickable(driver, EditEmployeeNavigationPageUI.JOB_LINK);
         clickToElement(driver, EditEmployeeNavigationPageUI.JOB_LINK);
@@ -35,5 +35,30 @@ public class EditEmployeeNavigationPO extends BasePage {
         waitElementClickable(driver, EditEmployeeNavigationPageUI.PERSONAL_DETAIL_LINK);
         clickToElement(driver, EditEmployeeNavigationPageUI.PERSONAL_DETAIL_LINK);
         return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
+    }
+
+    // cách 2: use dynamic locator with switch-case:
+    public EditEmployeeNavigationPO openEditNavigatorByName(String pageName) {
+        waitElementClickable(driver, EditEmployeeNavigationPageUI.DYNAMIC_BY_EDIT_EMPLOYEE_PAGE, pageName);
+        clickToElement(driver, EditEmployeeNavigationPageUI.DYNAMIC_BY_EDIT_EMPLOYEE_PAGE, pageName);
+
+        switch (pageName) {
+            case "Contact Details":
+                return PageGenerator.getPage(ContactDetailPageObject.class, driver);
+            case "Personal Details":
+                return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
+            case "Job":
+                return PageGenerator.getPage(JobPageObject.class, driver);
+            case "Dependents":
+                return PageGenerator.getPage(DependentsPageObject.class, driver);
+            default:
+                throw new IllegalArgumentException("Locator type is not supported: " + pageName);
+        }
+    }
+
+    // cách 3: không cần dùng switch-case:
+    public void openEditNavigatorByNames(String pageName) {
+        waitElementClickable(driver, EditEmployeeNavigationPageUI.DYNAMIC_BY_EDIT_EMPLOYEE_PAGE, pageName);
+        clickToElement(driver, EditEmployeeNavigationPageUI.DYNAMIC_BY_EDIT_EMPLOYEE_PAGE, pageName);
     }
 }

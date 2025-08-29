@@ -6,7 +6,7 @@
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="orangehrm.Login_08_Page_Navigation"/>
+            <class name="orangehrm.Login_09_Dynamic_Locator"/>
         </classes>
     </test>
 

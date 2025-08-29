@@ -43,7 +43,7 @@ public class Topic_03_Dynamic_Locator extends BaseTest{
         userRegisterPage.enterToPasswordTextbox(userPassword);
         userRegisterPage.enterToConfirmPasswordTextbox(confirmPassword);
         userRegisterPage.clickToRegisterButton();
-        Assert.assertEquals(userRegisterPage.getRegisterResultMassage(), "Your registration completed");
+        Assert.assertEquals(userRegisterPage.getRegisterResultMassage(), "Your registration completed...");
         // userHomePage = userRegisterPage.clickToContinueButton();
 
 

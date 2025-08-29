@@ -26,4 +26,9 @@ public class GlobalConstants {
     // orangehrm
     public static final String ADMIN_ORANGEHRM_USERNAME = "automationfc";
     public static final String ADMIN_ORANGEHRM_PASSWORD = "Auto222@@@";
+
+    // HTML report folder
+    public static final String REPORTING_PATH = PROJECT_PATH + SEPARATOR + "htmlReportNG" + SEPARATOR;
+    public static final String EXTENT_PATH = PROJECT_PATH + SEPARATOR + "htmlExtent" + SEPARATOR;
+    public static final String ALLURE_PATH = PROJECT_PATH + SEPARATOR + "htmlAllure" + SEPARATOR;
 }
