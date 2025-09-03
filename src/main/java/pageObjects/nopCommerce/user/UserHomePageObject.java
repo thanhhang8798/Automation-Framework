@@ -1,6 +1,7 @@
 package pageObjects.nopCommerce.user;
 
 import core.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
 import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.UserCustomerInforPO;
@@ -13,11 +14,13 @@ public class UserHomePageObject extends BasePage {
         this.driver = driver;
     }
 
+    @Step("Verify My account page display")
     public boolean isMyAccountLinkDisplayed() {
         waitElementVisible(driver, UserHomePageUI.MY_ACCOUNT_LINK);
         return isElementDisplayed(driver, UserHomePageUI.MY_ACCOUNT_LINK);
     }
 
+    @Step("Click to my account link")
     public UserCustomerInforPO clickToMyAccountLink() {
         waitElementClickable(driver, UserHomePageUI.MY_ACCOUNT_LINK);
         clickToElement(driver, UserHomePageUI.MY_ACCOUNT_LINK);

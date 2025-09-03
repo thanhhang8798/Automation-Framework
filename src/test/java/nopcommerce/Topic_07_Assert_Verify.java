@@ -3,7 +3,6 @@ package nopcommerce;
 import core.BaseTest;
 import core.GlobalConstants;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -16,7 +15,7 @@ import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserMyAccountSideBarPO.*;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class Topic_03_Dynamic_Locator extends BaseTest{
+public class Topic_07_Assert_Verify extends BaseTest{
     @Parameters({"userUrl", "adminUrl", "browser"})
     @BeforeClass
     public void beforeClass(String userUrl, String adminUrl, String browserName) {
@@ -43,9 +42,8 @@ public class Topic_03_Dynamic_Locator extends BaseTest{
         userRegisterPage.enterToPasswordTextbox(userPassword);
         userRegisterPage.enterToConfirmPasswordTextbox(confirmPassword);
         userRegisterPage.clickToRegisterButton();
-        Assert.assertEquals(userRegisterPage.getRegisterResultMassage(), "Your registration completed...");
+        verifyEquals(userRegisterPage.getRegisterResultMassage(), "Your registration completed 1234");
         // userHomePage = userRegisterPage.clickToContinueButton();
-
 
         // user >> admin
         userRegisterPage.openPageUrl(driver, adminUrl);
@@ -54,9 +52,12 @@ public class Topic_03_Dynamic_Locator extends BaseTest{
         adminLoginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_NOPCOMMERCE_PASSWORD);
 
         adminDashbpardPage = adminLoginPage.clickToLoginButton();
-        Assert.assertTrue(adminDashbpardPage.isDashboardDisplay());
+        verifyTrue(adminDashbpardPage.isDashboardDisplay());
         adminLoginPage = adminDashbpardPage.clickToAminLogoutLink(driver);
+    }
 
+    @Test
+    public void TC_03_Register() {
         // admin >> user
         adminLoginPage.openPageUrl(driver, userUrl);
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
@@ -65,18 +66,17 @@ public class Topic_03_Dynamic_Locator extends BaseTest{
         userLoginPage.enterToPasswordTextbox(userPassword);
         userHomePage = userLoginPage.clickToLoginButton();
         userCustomerInforPage = userHomePage.clickToMyAccountLink();
-        Assert.assertEquals(userCustomerInforPage.getFirstNameTextboxValue(), firstName);
-        Assert.assertEquals(userCustomerInforPage.getLastNameTextboxValue(), lastName);
-        Assert.assertEquals(userCustomerInforPage.getEmailTextboxValue(), userEmail);
+        verifyEquals(userCustomerInforPage.getFirstNameTextboxValue(), firstName);
+        verifyEquals(userCustomerInforPage.getLastNameTextboxValue(), lastName);
+        verifyEquals(userCustomerInforPage.getEmailTextboxValue(), userEmail);
     }
 
     @Test
-    public void TC_02_Dynamic_Locator() {
+    public void TC_04_Dynamic_Locator() {
         userOrdersPage = userCustomerInforPage.openUserOrderPage();
         userBackInStockSubscriptionsPage = userOrdersPage.openUserBackInStockPage();
         userAddressesPage = userBackInStockSubscriptionsPage.openUserAddressesPage();
         userDownloadableProductsPage = userAddressesPage.openUserDownloadableProductPage();
-
     }
 
     @AfterClass

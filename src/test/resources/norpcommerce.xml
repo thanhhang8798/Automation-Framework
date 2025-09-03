@@ -3,11 +3,16 @@
 <suite name="NopCommerce - UI automation test" verbose="1">
     <parameter name="userUrl" value="http://localhost/"></parameter>
     <parameter name="adminUrl" value="http://localhost/Admin/"></parameter>
+    
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+        <listener class-name="reportConfig.AllureListener"></listener>
+    </listeners>
 
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="nopcommerce.Topic_02_Switch_Site.Topic_03_Dynamic_Locator"/>
+            <class name="nopcommerce.Topic_09_Allure_Report"/>
         </classes>
     </test>
 
