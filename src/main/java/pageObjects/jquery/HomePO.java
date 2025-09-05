@@ -16,13 +16,13 @@ public class HomePO extends BasePage {
     }
 
     public void openPageNumber(String pageNumber) {
-        waitElementClickable(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
-        clickToElement(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
+        waitElementClickable(driver, HomePageUI.DYNAMIC_PAGE_LINK_BY_NUMBER, pageNumber);
+        clickToElement(driver, HomePageUI.DYNAMIC_PAGE_LINK_BY_NUMBER, pageNumber);
     }
 
     public boolean isPageNumberDisplayed(String pageNumber) {
-        waitElementVisible(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
-        return getElementDOMAttribute(driver, HomePageUI.DYNAMIC_PAGE_LINK, "class", pageNumber).endsWith("active");
+        waitElementVisible(driver, HomePageUI.DYNAMIC_PAGE_LINK_ACTIVE_BY_NUMBER, pageNumber);
+        return isElementDisplayed(driver, HomePageUI.DYNAMIC_PAGE_LINK_ACTIVE_BY_NUMBER, pageNumber);
     }
 
     public void enterToTextboxByHeaderName(String headerName, String valueToSendKey) {
@@ -82,11 +82,11 @@ public class HomePO extends BasePage {
     public void checkToCheckboxByIndex(String rowIndex, String columnName, boolean checkOrUncheck) {
         int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
         String columnIndex = String.valueOf(columnIndexNumber);
-        checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+        checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
         if(checkOrUncheck) {
-            checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+            checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
         } else {
-            uncheckToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+            uncheckToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
         }
     }
 
