@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.PageGenerator;
-import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 //import pageObjects.nopCommerce.admin.AdminLoginPO;
@@ -26,9 +25,6 @@ public class BasePage {
     public static BasePage getInstance() {
         return new BasePage();
     }
-
-
-
 
 
     public void openPageUrl(WebDriver driver, String pageUrl) {
@@ -270,25 +266,25 @@ public class BasePage {
         return getListElement(driver, castParameter(locator, restParameter)).size();
     }
 
-    public void checkToCheckbox(WebDriver driver, String locator) {
+    public void checkToCheckboxRadio(WebDriver driver, String locator) {
         if (!isElementSelected(driver, locator)) {
             clickToElement(driver, locator);
         }
     }
 
-    public void checkToCheckbox(WebDriver driver, String locator, String... restParameter) {
+    public void checkToCheckboxRadio(WebDriver driver, String locator, String... restParameter) {
         if (!isElementSelected(driver, castParameter(locator, restParameter))) {
             clickToElement(driver, castParameter(locator, restParameter));
         }
     }
 
-    public void uncheckToCheckbox(WebDriver driver, String locator) {
+    public void uncheckToCheckboxRadio(WebDriver driver, String locator) {
         if (isElementDisplayed(driver, locator)) {
             clickToElement(driver, locator);
         }
     }
 
-    public void uncheckToCheckbox(WebDriver driver, String locator, String... restParameter) {
+    public void uncheckToCheckboxRadio(WebDriver driver, String locator, String... restParameter) {
         if (isElementDisplayed(driver, castParameter(locator, restParameter))) {
             clickToElement(driver, castParameter(locator, restParameter));
         }
@@ -514,4 +510,38 @@ public class BasePage {
     }
 
 
+    public void enterToTextboxByID(WebDriver driver, String textboxID, String valueToSendkey) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_ID, textboxID);
+        sendKeyToElement(driver, BasePageUI.TEXTBOX_BY_ID, valueToSendkey, textboxID);
+    }
+
+    public void clickToButtonByText(WebDriver driver, String buttonText) {
+        waitElementClickable(driver, BasePageUI.BUTTON_BY_TEXT, buttonText);
+        clickToElement(driver, BasePageUI.BUTTON_BY_TEXT, buttonText);
+    }
+
+    public void clickToCheckboxByID(WebDriver driver, String checkboxID) {
+        waitElementClickable(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+        checkToCheckboxRadio(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+    }
+
+    public void clickToRadioByID(WebDriver driver, String radioID) {
+        waitElementClickable(driver, BasePageUI.RADIO_BY_ID, radioID);
+        checkToCheckboxRadio(driver, BasePageUI.RADIO_BY_ID, radioID);
+    }
+
+    public String getTextboxValueByID(WebDriver driver, String textboxID) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_ID, textboxID);
+        return getElementDOMProperty(driver, BasePageUI.TEXTBOX_BY_ID,"value", textboxID);
+    }
+
+    public boolean isCheckboxSelectedByID(WebDriver driver, String checkboxID) {
+        waitElementSelected(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+        return isElementSelected(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+    }
+
+    public boolean isRadioSelectedByID(WebDriver driver, String radioID) {
+        waitElementSelected(driver, BasePageUI.RADIO_BY_ID, radioID);
+        return isElementSelected(driver, BasePageUI.RADIO_BY_ID, radioID);
+    }
 }

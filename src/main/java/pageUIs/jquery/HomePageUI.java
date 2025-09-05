@@ -1,8 +1,8 @@
 package pageUIs.jquery;
 
 public class HomePageUI {
-    public static final String DYNAMIC_PAGE_LINK = "xpath=//li[@class='qgrd-pagination-page']/a[text()='%s']";
-    public static final String DYNAMIC_PAGE_LINK_ACTIVE = "xpath=//li[@class='qgrd-pagination-page-link active']/a[text()='%s']";
+    public static final String DYNAMIC_PAGE_LINK_BY_NUMBER = "xpath=//li[@class='qgrd-pagination-page']/a[text()='%s']";
+    public static final String DYNAMIC_PAGE_LINK_ACTIVE_BY_NUMBER = "xpath=//a[@class='qgrd-pagination-page-link active' and text()='%s']";
     public static final String DYNAMIC_TEXTBOX_BY_HEADER_NAME = "xpath=//div[text()='%s']/parent::div/following-sibling::input";
     public static final String DYNAMIC_ROW_DATA_VALUE = "xpath=//td[@data-key='females' and text()='%s']"
             + "/following-sibling::td[@data-key='country' and text()='%s']"
