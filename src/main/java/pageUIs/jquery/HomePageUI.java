@@ -17,7 +17,7 @@ public class HomePageUI {
     public static final String EDIT_POPUP = "class=qgrd-modal-container";
 
     public static final String LOAD_DATA_BUTTON = "id=load";
-    public static final String DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER = "xpath=//th[text()='%s']/preceding-sibling::th";
+    public static final String DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING = "xpath=//th[text()='%s']/preceding-sibling::th";
     public static final String DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//input";
     public static final String DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//select";
     public static final String DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//input[@type='checkbox']";

@@ -52,8 +52,7 @@ public class HomePO extends BasePage {
     }
 
     public boolean isEditPopupDisplay() {
-        sleepInSecond(1);
-        // waitElementPresence(driver, TablePageUI.EDIT_POPUP);
+        waitElementVisible(driver, HomePageUI.EDIT_POPUP);
         return isElementDisplayed(driver, HomePageUI.EDIT_POPUP);
     }
 
@@ -63,31 +62,38 @@ public class HomePO extends BasePage {
     }
 
     public void enterToTextboxByIndex(String rowIndex, String columnName, String valueToSendkey) {
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
         // lay column index
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
 
         // convert index qua text (String)
         String columnIndex = String.valueOf(columnIndexNumber);
 
         // truyền 2 giá trị rowIndex/ columnIndex vào locator để tương tác
+        waitElementVisible(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
         sendKeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
     }
 
     public void selectToDropdownByIndex(String rowIndex, String columnName, String valueToSelect) {
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
-        String columnIndex = String.valueOf(columnIndexNumber);
-        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, columnIndex);
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
+        // gộp hàm convert index
+        waitElementClickable(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, String.valueOf(columnIndexNumber));
+        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, String.valueOf(columnIndexNumber));
     }
 
     public void checkToCheckboxByIndex(String rowIndex, String columnName, boolean checkOrUncheck) {
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
+
         String columnIndex = String.valueOf(columnIndexNumber);
+        waitElementClickable(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
         checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        if(checkOrUncheck) {
-            checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        } else {
-            uncheckToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        }
+//        if(checkOrUncheck) {
+//            checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+//        } else {
+//            uncheckToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+//        }
     }
 
     public void clickToIconByIndex(String rowIndex, String iconName) {
@@ -95,6 +101,7 @@ public class HomePO extends BasePage {
         clickToElement(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX, rowIndex, iconName);
     }
 
+    // upload file
     public void isFileLoadedByName(String fileName) {
         waitElementVisible(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
         isElementDisplayed(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
