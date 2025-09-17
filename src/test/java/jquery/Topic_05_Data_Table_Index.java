@@ -36,7 +36,6 @@ public class Topic_05_Data_Table_Index extends BaseTest {
     }
 
 
-
     @AfterClass
     public void afterClass() {
         driver.quit();

@@ -9,10 +9,11 @@
 <!--&lt;!&ndash;        <listener class-name="reportConfig.AllureListener"></listener>&ndash;&gt;-->
 <!--    </listeners>-->
 
-    <test name="Run on Firefox broser">
+    <test name="Run on Firefox broser" preserve-order = "true">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="nopcommerce.Topic_08_Element_Component"/>
+            <class name="nopcommerce.Common_Login"/>
+            <class name="nopcommerce.Topic_09_Share_State_Cookies"/>
         </classes>
     </test>
 

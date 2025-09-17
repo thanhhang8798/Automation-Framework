@@ -13,7 +13,7 @@
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Chrome"></parameter>
         <classes>
-            <class name="jquery.Topic_04_Data_Table"/>
+            <class name="jquery.Topic_06_Data_Table_GetAllData"/>
         </classes>
     </test>
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageUIs.jquery.HomePageUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePO extends BasePage {
@@ -112,5 +113,48 @@ public class HomePO extends BasePage {
     public void isFileUploadedByName(String fileName) {
         waitElementVisible(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
         isElementDisplayed(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
+    }
+
+    public List<String> getAllValueByColumnName(String columnName) {
+        // Lấy ra all page và all value từng cột lưu vào 1 list
+        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+        List<String> columnAllValue = new ArrayList<String>();
+
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName);
+        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName) + 1;
+
+        // dùng vòng lặp chuyển qua từng page và lấy ra giá trị
+        for (WebElement page : allPage) {
+            page.click();
+
+            // lấy ra all giá trị của từng page
+            List<WebElement> columnAllValueElement = getListElement(driver, HomePageUI.DYNAMIC_COLUMN_INDEX, String.valueOf(columnIndex));
+            for (WebElement value : columnAllValueElement) {
+                // get data trong 1 cột rồi lưu và list
+                columnAllValue.add(value.getText());
+            }
+        }
+        return columnAllValue;
+    }
+
+    public List<String> getAllValuesByAttribute(String columnAttribute) {
+        // Lấy ra all page và all value từng cột lưu vào list
+        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+        List<String> columnAllValue = new ArrayList<String>();
+
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_ALL_VALUE_BY_ATTRIBUTE, columnAttribute);
+
+        // dùng vòng lặp chuyển qua từng page và lấy ra giá trị
+        for (WebElement page : allPage) {
+            page.click();
+
+            // lấy ra all giá trị của từng page
+            List<WebElement> columnAllValueElement = getListElement(driver, HomePageUI.DYNAMIC_ALL_VALUE_BY_ATTRIBUTE, columnAttribute);
+            for (WebElement value : columnAllValueElement) {
+                // get data trong 1 cột rồi lưu và list
+                columnAllValue.add(value.getText());
+            }
+        }
+        return columnAllValue;
     }
 }
