@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.PageGenerator;
+import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 //import pageObjects.nopCommerce.admin.AdminLoginPO;
@@ -160,6 +161,17 @@ public class BasePage {
 
     private By getByXpath(String locator) {
         return By.xpath(locator);
+    }
+
+    public Set<Cookie> getAllCookies(WebDriver driver) {
+        return driver.manage().getCookies();
+    }
+
+    public void setCookies(WebDriver driver, Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        sleepInSecond(3);
     }
 
     private WebElement getWebElement(WebDriver driver, String locator){
@@ -421,7 +433,11 @@ public class BasePage {
     }
 
     public List<WebElement> waitListElementVisible(WebDriver driver, String locator, String... restParameter) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
+
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
+//         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
+
     }
 
     public boolean waitElementSelected(WebDriver driver, String locator) {
@@ -547,5 +563,16 @@ public class BasePage {
     public boolean isRadioSelectedByID(WebDriver driver, String radioID) {
         waitElementSelected(driver, BasePageUI.RADIO_BY_ID, radioID);
         return isElementSelected(driver, BasePageUI.RADIO_BY_ID, radioID);
+    }
+
+    public UserHomePageObject clickToLogoLink(WebDriver driver) {
+        waitElementClickable(driver, BasePageUI.NOPCOMMERCE_LOGO);
+        clickToElement(driver, BasePageUI.NOPCOMMERCE_LOGO);
+        return PageGenerator.getPage(UserHomePageObject.class, driver);
+    }
+
+    public void clickToLinkByText(WebDriver driver, String linkText) {
+        waitElementClickable(driver, BasePageUI.LINK_BY_TEXT, linkText);
+        clickToElement(driver, BasePageUI.LINK_BY_TEXT, linkText);
     }
 }

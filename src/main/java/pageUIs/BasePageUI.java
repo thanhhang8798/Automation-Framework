@@ -11,10 +11,12 @@ public class BasePageUI {
     public static final String ADMIN_NOPCOMMERCE_LOGOUT_LINK = "xpath=//a[text()='Logout']";
     public static final String USER_NOPCOMMERCE_LOGIN_LINK = "xpath=//a[@class='ico-login']";
     public static final String REGISTER_LINK = "xpath=//a[@class='ico-register']";
+    public static final String NOPCOMMERCE_LOGO = "css=div.header-logo>a";
 
         // component
     public static final String TEXTBOX_BY_ID = "css=input#%s";
     public static final String BUTTON_BY_TEXT = "xpath=//button[text()='%s']";
+    public static final String LINK_BY_TEXT = "xpath=//a[text()='%s']";
     public static final String CHECKBOX_BY_ID = "css=input#%s";
     public static final String RADIO_BY_ID = "css=input#%s";
 

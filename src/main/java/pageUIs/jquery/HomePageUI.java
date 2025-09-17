@@ -26,4 +26,9 @@ public class HomePageUI {
     public static final String DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME = "xpath=//p[@class='name' and text()='%s']";
     public static final String START_BUTTON = "css=td>button.start";
     public static final String DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME = "css=p.name>a[title='%s']";
+
+    public static final String ALL_PAGE = "xpath=//li[@class='qgrd-pagination-page']/a";
+    public static final String DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME = "xpath=//div[text()='%s']/ancestor::th/preceding-sibling::th";
+    public static final String DYNAMIC_COLUMN_INDEX = "xpath=//td[%s]";
+    public static final String DYNAMIC_ALL_VALUE_BY_ATTRIBUTE = "xpath=//td[@data-key='%s']";
 }
