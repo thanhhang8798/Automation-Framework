@@ -433,8 +433,11 @@ public class BasePage {
     }
 
     public List<WebElement> waitListElementVisible(WebDriver driver, String locator, String... restParameter) {
+
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
+//         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
+
     }
 
     public boolean waitElementSelected(WebDriver driver, String locator) {
