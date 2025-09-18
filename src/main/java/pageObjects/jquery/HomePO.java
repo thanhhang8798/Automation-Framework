@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageUIs.jquery.HomePageUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePO extends BasePage {
@@ -16,13 +17,13 @@ public class HomePO extends BasePage {
     }
 
     public void openPageNumber(String pageNumber) {
-        waitElementClickable(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
-        clickToElement(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
+        waitElementClickable(driver, HomePageUI.DYNAMIC_PAGE_LINK_BY_NUMBER, pageNumber);
+        clickToElement(driver, HomePageUI.DYNAMIC_PAGE_LINK_BY_NUMBER, pageNumber);
     }
 
     public boolean isPageNumberDisplayed(String pageNumber) {
-        waitElementVisible(driver, HomePageUI.DYNAMIC_PAGE_LINK, pageNumber);
-        return getElementDOMAttribute(driver, HomePageUI.DYNAMIC_PAGE_LINK, "class", pageNumber).endsWith("active");
+        waitElementVisible(driver, HomePageUI.DYNAMIC_PAGE_LINK_ACTIVE_BY_NUMBER, pageNumber);
+        return isElementDisplayed(driver, HomePageUI.DYNAMIC_PAGE_LINK_ACTIVE_BY_NUMBER, pageNumber);
     }
 
     public void enterToTextboxByHeaderName(String headerName, String valueToSendKey) {
@@ -52,8 +53,7 @@ public class HomePO extends BasePage {
     }
 
     public boolean isEditPopupDisplay() {
-        sleepInSecond(1);
-        // waitElementPresence(driver, TablePageUI.EDIT_POPUP);
+        waitElementVisible(driver, HomePageUI.EDIT_POPUP);
         return isElementDisplayed(driver, HomePageUI.EDIT_POPUP);
     }
 
@@ -63,31 +63,38 @@ public class HomePO extends BasePage {
     }
 
     public void enterToTextboxByIndex(String rowIndex, String columnName, String valueToSendkey) {
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
         // lay column index
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
 
         // convert index qua text (String)
         String columnIndex = String.valueOf(columnIndexNumber);
 
         // truyền 2 giá trị rowIndex/ columnIndex vào locator để tương tác
+        waitElementVisible(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
         sendKeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
     }
 
     public void selectToDropdownByIndex(String rowIndex, String columnName, String valueToSelect) {
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
-        String columnIndex = String.valueOf(columnIndexNumber);
-        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, columnIndex);
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
+        // gộp hàm convert index
+        waitElementClickable(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, String.valueOf(columnIndexNumber));
+        selectItemInDropdown(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, String.valueOf(columnIndexNumber));
     }
 
     public void checkToCheckboxByIndex(String rowIndex, String columnName, boolean checkOrUncheck) {
-        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName) + 1;
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName);
+        int columnIndexNumber = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_NUMBER_BY_PRECEDING_SIBLING, columnName) + 1;
+
         String columnIndex = String.valueOf(columnIndexNumber);
-        checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        if(checkOrUncheck) {
-            checkToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        } else {
-            uncheckToCheckbox(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
-        }
+        waitElementClickable(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+        checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+//        if(checkOrUncheck) {
+//            checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+//        } else {
+//            uncheckToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+//        }
     }
 
     public void clickToIconByIndex(String rowIndex, String iconName) {
@@ -95,6 +102,7 @@ public class HomePO extends BasePage {
         clickToElement(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_AND_COLUMN_INDEX, rowIndex, iconName);
     }
 
+    // upload file
     public void isFileLoadedByName(String fileName) {
         waitElementVisible(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
         isElementDisplayed(driver, HomePageUI.DYNAMIC_UPLOAD_LOADED_BY_FILE_NAME, fileName);
@@ -112,5 +120,48 @@ public class HomePO extends BasePage {
     public void isFileUploadedByName(String fileName) {
         waitElementVisible(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
         isElementDisplayed(driver, HomePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
+    }
+
+    public List<String> getAllValueByColumnName(String columnName) {
+        // Lấy ra all page và all value từng cột lưu vào 1 list
+        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+        List<String> columnAllValue = new ArrayList<String>();
+
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName);
+        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_COLUMN_INDEX_BY_COLUMN_NAME, columnName) + 1;
+
+        // dùng vòng lặp chuyển qua từng page và lấy ra giá trị
+        for (WebElement page : allPage) {
+            page.click();
+
+            // lấy ra all giá trị của từng page
+            List<WebElement> columnAllValueElement = getListElement(driver, HomePageUI.DYNAMIC_COLUMN_INDEX, String.valueOf(columnIndex));
+            for (WebElement value : columnAllValueElement) {
+                // get data trong 1 cột rồi lưu và list
+                columnAllValue.add(value.getText());
+            }
+        }
+        return columnAllValue;
+    }
+
+    public List<String> getAllValuesByAttribute(String columnAttribute) {
+        // Lấy ra all page và all value từng cột lưu vào list
+        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+        List<String> columnAllValue = new ArrayList<String>();
+
+        waitListElementVisible(driver, HomePageUI.DYNAMIC_ALL_VALUE_BY_ATTRIBUTE, columnAttribute);
+
+        // dùng vòng lặp chuyển qua từng page và lấy ra giá trị
+        for (WebElement page : allPage) {
+            page.click();
+
+            // lấy ra all giá trị của từng page
+            List<WebElement> columnAllValueElement = getListElement(driver, HomePageUI.DYNAMIC_ALL_VALUE_BY_ATTRIBUTE, columnAttribute);
+            for (WebElement value : columnAllValueElement) {
+                // get data trong 1 cột rồi lưu và list
+                columnAllValue.add(value.getText());
+            }
+        }
+        return columnAllValue;
     }
 }

@@ -4,15 +4,16 @@
     <parameter name="userUrl" value="http://localhost/"></parameter>
     <parameter name="adminUrl" value="http://localhost/Admin/"></parameter>
     
-    <listeners>
-        <listener class-name="core.MethodListener"></listener>
-        <listener class-name="reportConfig.AllureListener"></listener>
-    </listeners>
+<!--    <listeners>-->
+<!--&lt;!&ndash;        <listener class-name="core.MethodListener"></listener>&ndash;&gt;-->
+<!--&lt;!&ndash;        <listener class-name="reportConfig.AllureListener"></listener>&ndash;&gt;-->
+<!--    </listeners>-->
 
-    <test name="Run on Firefox broser">
+    <test name="Run on Firefox broser" preserve-order = "true">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="nopcommerce.Topic_09_Allure_Report"/>
+            <class name="nopcommerce.Common_Login"/>
+            <class name="nopcommerce.Topic_09_Share_State_Cookies"/>
         </classes>
     </test>
 

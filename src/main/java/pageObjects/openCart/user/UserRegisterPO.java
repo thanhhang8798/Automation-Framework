@@ -2,7 +2,6 @@ package pageObjects.openCart.user;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.PageGenerator;
 import pageUIs.openCart.user.UserRegisterPageUI;
 
 public class UserRegisterPO extends BasePage {
@@ -36,7 +35,7 @@ public class UserRegisterPO extends BasePage {
         scrollToElementOnTop(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
         waitElementClickable(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
         // clickToElementByJS(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
-        checkToCheckbox(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
+        checkToCheckboxRadio(driver, UserRegisterPageUI.PRIVACY_POLICY_TOGGLE);
     }
 
     public void ClickToContinueButton() {

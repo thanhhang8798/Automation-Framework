@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.jquery.HomePO;
 
-public class Topic_06_Upload_Files extends BaseTest {
+public class Topic_07_Upload_Files extends BaseTest {
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
