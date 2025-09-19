@@ -53,7 +53,7 @@ public class Topic_09_Share_State_Cookies extends BaseTest{
 
     @AfterClass(alwaysRun = true)
     public void afterClass() {
-        driver.quit();
+        closeBrowserDriver();
     }
 
     private WebDriver driver;
