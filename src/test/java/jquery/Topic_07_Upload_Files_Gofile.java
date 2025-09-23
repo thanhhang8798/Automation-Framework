@@ -8,39 +8,35 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
+import pageObjects.jquery.GoFilePO;
 import pageObjects.jquery.HomePO;
 
-public class Topic_07_Upload_Files extends BaseTest {
+public class Topic_07_Upload_Files_Gofile extends BaseTest {
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
         driver = getBrowserDriver(webUrl, browserName);
-        homePage = PageGenerator.getPage(HomePO.class, driver);
+        goFilePage = PageGenerator.getPage(GoFilePO.class, driver);
         firstImage = "lshopping.png";
         secondImage = "ScreenshotAnime.jpg";
     }
 
     @Test
     public void Table_01_() {
+        Assert.assertTrue(goFilePage.isLoadingSpinnerDispeared());
 
-        // upload 1 file
-        homePage.uploadMultipleFiles(driver, firstImage);
-        homePage.refreshPage(driver);
+        goFilePage.uploadMultipleFiles(driver, firstImage, secondImage);
 
-        // upload nhiều file
-        homePage.uploadMultipleFiles(driver, firstImage, secondImage);
+        Assert.assertTrue(goFilePage.isLoadingSpinnerDispeared());
+        Assert.assertTrue(goFilePage.isProgressBarDisappeared());
 
-        // verify sau khi tải file lên
-        homePage.isFileLoadedByName(firstImage);
-        homePage.isFileLoadedByName(secondImage);
+        goFilePage.clickToFileLink();
 
-        // click button start để upload file
-        homePage.clickToStartButton();
+        Assert.assertTrue(goFilePage.isLoadingSpinnerDispeared());
 
-        // verify sau khi tải file lên thành công
-        Assert.assertTrue(homePage.isFileUploadedByName(firstImage));
-        Assert.assertTrue(homePage.isFileUploadedByName(secondImage));
+        Assert.assertTrue(goFilePage.isFileUploadedByName(firstImage));
+        Assert.assertTrue(goFilePage.isFileUploadedByName(secondImage));
     }
 
 
@@ -52,7 +48,7 @@ public class Topic_07_Upload_Files extends BaseTest {
 
     private WebDriver driver;
 
-    private HomePO homePage;
+    private GoFilePO goFilePage;
 
     private String firstImage, secondImage, thirdImage;
 }
