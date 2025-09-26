@@ -31,7 +31,8 @@ public class Topic_07_Upload_Files_Gofile extends BaseTest {
         Assert.assertTrue(goFilePage.isLoadingSpinnerDispeared());
         Assert.assertTrue(goFilePage.isProgressBarDisappeared());
 
-        goFilePage.clickToFileLink();
+        String fileUrl = goFilePage.getFileLink();
+        goFilePage.openPageUrl(driver, fileUrl);
 
         Assert.assertTrue(goFilePage.isLoadingSpinnerDispeared());
 

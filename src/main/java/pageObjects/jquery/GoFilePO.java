@@ -20,13 +20,13 @@ public class GoFilePO extends BasePage {
         return waitListElementInvisible(driver, GoFilePageUI.PROGRESS_BAR);
     }
 
-    public void clickToFileLink() {
-        waitElementClickable(driver, GoFilePageUI.FILE_lINK);
-        clickToElement(driver, GoFilePageUI.FILE_lINK);
-    }
-
     public boolean isFileUploadedByName(String fileName) {
         waitElementVisible(driver, GoFilePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
         return isElementDisplayed(driver, GoFilePageUI.DYNAMIC_FILE_UPLOADED_SUCCESS_BY_FILE_NAME, fileName);
+    }
+
+    public String getFileLink() {
+        waitElementVisible(driver, GoFilePageUI.FILE_lINK);
+        return getElementText(driver, GoFilePageUI.FILE_lINK);
     }
 }
