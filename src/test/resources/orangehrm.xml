@@ -3,10 +3,15 @@
 <suite name="OrangeHRM - UI automation test" verbose="1">
     <parameter name="webUrl" value="http://localhost:88/orangehrm"></parameter>
 
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+        <!--        <listener class-name="reportConfig.AllureListener"></listener>-->
+    </listeners>
+
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="orangehrm.Login_09_Dynamic_Locator"/>
+            <class name="orangehrm.Login_10_Log4j"/>
         </classes>
     </test>
 
