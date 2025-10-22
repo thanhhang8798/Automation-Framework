@@ -5,13 +5,13 @@
 
     <listeners>
         <listener class-name="core.MethodListener"></listener>
-        <!--        <listener class-name="reportConfig.AllureListener"></listener>-->
+        <listener class-name="reportConfig.AllureTestListener"></listener>
     </listeners>
 
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="orangehrm.Login_10_Log4j"/>
+            <class name="orangehrm.Login_11_Allure_Report"/>
         </classes>
     </test>
 

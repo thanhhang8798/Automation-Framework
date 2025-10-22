@@ -2,6 +2,7 @@ package orangehrm;
 
 import core.BaseTest;
 import core.GlobalConstants;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -18,7 +19,9 @@ import pageObjects.orangeHRM.editEmployeeNavigation.DependentsPageObject;
 import pageObjects.orangeHRM.editEmployeeNavigation.JobPageObject;
 import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
 
-public class Login_10_Log4j extends BaseTest {
+@Epic("OrangeHrm auto test")
+@Feature("Login")
+public class Login_11_Allure_Report extends BaseTest {
     private WebDriver driver;
     String employeeID, employeeFirstName, employeeLastName;
 
@@ -33,43 +36,47 @@ public class Login_10_Log4j extends BaseTest {
         employeeLastName = "Hang";
     }
 
+    @Description("Create new Employee")
+    @Story("Login")
+    @Severity(SeverityLevel.NORMAL)
     @Test
-    public void Employee_01_CreateNewEmployedd() {
+    public void Employee_01_Login() {
         // Action of login
-        log.info("New employee - STEP 01: Enter to Username and Password: " + GlobalConstants.ADMIN_ORANGEHRM_USERNAME + " | " + GlobalConstants.ADMIN_ORANGEHRM_PASSWORD);
         loginPage.enterToUsernameTextbox(GlobalConstants.ADMIN_ORANGEHRM_USERNAME);
         loginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_ORANGEHRM_PASSWORD);
-
-        log.info("New employee - STEP 02: Navigate to Dashboard page");
         dashboardPage = loginPage.clickToLoginButton();
-        verifyTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
 
-        log.info("New employee - STEP 03: Navigate to Employee list page");
+        Assert.assertTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
         employeeListPage = dashboardPage.clickToPIMModule();
-        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
 
-        log.info("New employee - STEP 04: Navigate to Add Employee page");
+        Assert.assertTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
         addEmployeePage = employeeListPage.clickToAddEmployeeButton();
-        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
 
-        log.info("New employee - STEP 05: Enter to Username and Password: " + employeeFirstName + " | " + employeeLastName);
+        Assert.assertTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+    }
+
+    @Description("Create new Employee")
+    @Story("Save new employee")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void Employee_02_AddNewEmployee() {
         addEmployeePage.enterToFirstNameTextbox(employeeFirstName);
         addEmployeePage.enterToLastNameTextbox(employeeLastName);
         employeeID = addEmployeePage.getEmployeeID();
-
-        log.info("New employee - STEP 06: Navigate to Personal detail page");
         personalDetailPage = addEmployeePage.clickToSaveButton();
         // Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));
-        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
 
-        log.info("New employee - STEP 07: Verify employee first name infor: " + employeeFirstName);
-        verifyEquals(personalDetailPage.getFirstNameTextboxValue(), employeeLastName);
+        Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+    }
 
-        log.info("New employee - STEP 08: Verify employee last name infor: " + employeeLastName);
-        verifyEquals(personalDetailPage.getLastNameTextboxValue(), employeeLastName);
-
-        log.info("New employee - STEP 09: Verify employee ID infor: " + employeeID);
-        verifyEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
+    @Description("Create new Employee")
+    @Story("Verify new employee")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void Employee_03_VerifyNewEmployee() {
+        Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetailPage.getLastNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
     }
 
 
@@ -84,6 +91,6 @@ public class Login_10_Log4j extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        closeBrowser(driver);
+        driver.quit();
     }
 }
