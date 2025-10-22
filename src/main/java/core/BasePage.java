@@ -1,5 +1,6 @@
 package core;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -479,6 +480,7 @@ public class BasePage {
     }
 
     // orangehrm
+    @Step("Waiting for loading spinner disappear")
     public boolean isLoadingSpinnerDisappear(WebDriver driver) {
         return waitElementInvisible(driver, BasePageUI.SPINNER_ICON);
     }

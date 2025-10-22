@@ -1,8 +1,8 @@
 package core;
 
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +25,11 @@ public class BaseTest {
         return driver;
     }
 
-//    protected final Logger log;
-//
-//    public BaseTest() {
-//        log = LogManager.getLogger(getClass());
-//    }
+    protected final Logger log;
+
+    public BaseTest() {
+        this.log = LogManager.getLogger(getClass());
+    }
 
     protected WebDriver getBrowserDriver(String webUrl, String browserName) {
         BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
@@ -52,6 +53,7 @@ public class BaseTest {
         driver.get(webUrl);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.manage().window().maximize();
+        log.info("================== INIT BROWSER & DRIVER ==================");
         return driver;
     }
 
@@ -59,12 +61,14 @@ public class BaseTest {
         if (!(null == driver)) {
             driver.quit();
         }
+        log.info("================== CLOSE BROWSER & DRIVER ==================");
     }
 
     protected void closeBrowser(WebDriver driver) {
         if (!(null == driver)) {
             driver.quit();
         }
+        log.info("================== CLOSE BROWSER & DRIVER ==================");
     }
 
     protected int getRandomNumber() {
@@ -77,10 +81,10 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertTrue(condition);
-//            log.info("----------------- PASSED -----------------");
+            log.info("----------------- PASSED -----------------");
         } catch (Throwable e) {
             status = false;
-//            log.info("----------------- FAILED -----------------");
+            log.info("----------------- FAILED -----------------");
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
@@ -91,10 +95,10 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertFalse(condition);
-//            log.info("----------------- PASSED -----------------");
+            log.info("----------------- PASSED -----------------");
         } catch (Throwable e) {
             status = false;
-//            log.info("----------------- FAILED -----------------");
+            log.info("----------------- FAILED -----------------");
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
@@ -105,40 +109,14 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertEquals(actual, expected);
-//            log.info("----------------- PASSED -----------------");
+            log.info("----------------- PASSED -----------------");
         } catch (Throwable e) {
             status = false;
-//            log.info("----------------- FAILED -----------------");
+            log.info("----------------- FAILED -----------------");
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
         }
         return status;
-    }
-
-
-    // delete screenshort file
-    public void deleteFileInReport() {
-        // Remove all file in ReportNG screenshot (image)
-        deleteAllFileInFolder("htmlReportNG");
-        // Remove all file in Allure attachment (json file)
-        deleteAllFileInFolder("allure-json");
-    }
-
-    public void deleteAllFileInFolder(String folderName) {
-        try {
-            String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + folderName;
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
-            if (listOfFiles.length != 0) {
-                for (int i = 0; i < listOfFiles.length; i++) {
-                    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
-                        new File(listOfFiles[i].toString()).delete();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-        }
     }
 
     protected void closeBrowserDriver() {
@@ -178,6 +156,29 @@ public class BaseTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @BeforeSuite
+    public void deleteFileInReport() {
+        // Remove all file in Allure attachment (json file)
+        deleteAllFileInFolder("htmlAllure");
+    }
+
+    public void deleteAllFileInFolder(String folderName) {
+        try {
+            String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + folderName;
+            File file = new File(pathFolderDownload);
+            File[] listOfFiles = file.listFiles();
+            if (listOfFiles.length != 0) {
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
+                        new File(listOfFiles[i].toString()).delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
         }
     }
 }
