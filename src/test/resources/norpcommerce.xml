@@ -6,13 +6,14 @@
     
     <listeners>
         <listener class-name="core.MethodListener"></listener>
-        <listener class-name="reportConfig.AllureListener"></listener>
+<!--        <listener class-name="reportConfig.AllureListener"></listener>-->
     </listeners>
 
-    <test name="Run on Firefox broser">
+    <test name="Run on Firefox broser" preserve-order = "true">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="nopcommerce.Topic_09_Allure_Report"/>
+<!--            <class name="nopcommerce.Common_Login"/>-->
+            <class name="nopcommerce.Topic_07_Assert_Verify"/>
         </classes>
     </test>
 

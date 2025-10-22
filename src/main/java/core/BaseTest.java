@@ -10,8 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Random;
 
@@ -26,7 +28,7 @@ public class BaseTest {
     protected final Logger log;
 
     public BaseTest() {
-        log = LogManager.getLogger(getClass());
+        this.log = LogManager.getLogger(getClass());
     }
 
     protected WebDriver getBrowserDriver(String webUrl, String browserName) {
@@ -51,6 +53,7 @@ public class BaseTest {
         driver.get(webUrl);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.manage().window().maximize();
+        log.info("================== INIT BROWSER & DRIVER ==================");
         return driver;
     }
 
@@ -58,12 +61,14 @@ public class BaseTest {
         if (!(null == driver)) {
             driver.quit();
         }
+        log.info("================== CLOSE BROWSER & DRIVER ==================");
     }
 
     protected void closeBrowser(WebDriver driver) {
         if (!(null == driver)) {
             driver.quit();
         }
+        log.info("================== CLOSE BROWSER & DRIVER ==================");
     }
 
     protected int getRandomNumber() {
@@ -114,13 +119,50 @@ public class BaseTest {
         return status;
     }
 
+    protected void closeBrowserDriver() {
+        String cmd = null;
+        try {
+            String osName = System.getProperty("os.name").toLowerCase();
+//            log.info("OS name = " + osName);
+            String driverInstanceName = driver.toString().toLowerCase();
+//            log.info("Driver instance name = " + driverInstanceName);
+            String browserDriverName = null;
+            if (driverInstanceName.contains("chrome")) {
+                browserDriverName = "chromedriver";
+            } else if (driverInstanceName.contains("firefox")) {
+                browserDriverName = "geckodriver";
+            } else if (driverInstanceName.contains("edge")) {
+                browserDriverName = "msedgedriver";
+            } else {
+                browserDriverName = "safaridriver";
+            }
+            if (osName.contains("window")) {
+                cmd = "taskkill /F /FI \"IMAGENAME eq " + browserDriverName + "*\"";
+            } else {
+                cmd = "pkill " + browserDriverName;
+            }
+            if (driver != null) {
+                driver.manage().deleteAllCookies();
+                driver.quit();
+            }
+        } catch (Exception e) {
+//            log.info(e.getMessage());
+        } finally {
+            try {
+                Process process = Runtime.getRuntime().exec(cmd);
+                process.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    // delete screenshort file
+    @BeforeSuite
     public void deleteFileInReport() {
-        // Remove all file in ReportNG screenshot (image)
-        deleteAllFileInFolder("htmlReportNG");
         // Remove all file in Allure attachment (json file)
-        deleteAllFileInFolder("allure-json");
+        deleteAllFileInFolder("htmlAllure");
     }
 
     public void deleteAllFileInFolder(String folderName) {

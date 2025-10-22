@@ -2,6 +2,7 @@ package jquery;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.jquery.HomePO;
 
-public class Topic_06_Upload_Files extends BaseTest {
+public class Topic_07_Upload_Files extends BaseTest {
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
@@ -22,6 +23,7 @@ public class Topic_06_Upload_Files extends BaseTest {
 
     @Test
     public void Table_01_() {
+
         // upload 1 file
         homePage.uploadMultipleFiles(driver, firstImage);
         homePage.refreshPage(driver);
@@ -37,8 +39,8 @@ public class Topic_06_Upload_Files extends BaseTest {
         homePage.clickToStartButton();
 
         // verify sau khi tải file lên thành công
-        homePage.isFileUploadedByName(firstImage);
-        homePage.isFileUploadedByName(secondImage);
+        Assert.assertTrue(homePage.isFileUploadedByName(firstImage));
+        Assert.assertTrue(homePage.isFileUploadedByName(secondImage));
     }
 
 
