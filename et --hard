@@ -1,0 +1,47 @@
+[33m6fc37ec[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/assert_verify[m[33m, [m[1;31morigin/feature/uploadFile[m[33m, [m[1;32mfeature/uploadFile[m[33m)[m HEAD@{0}: reset: moving to HEAD^
+[33m9257ec7[m HEAD@{1}: commit: Assert and verify
+[33m6fc37ec[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/assert_verify[m[33m, [m[1;31morigin/feature/uploadFile[m[33m, [m[1;32mfeature/uploadFile[m[33m)[m HEAD@{2}: reset: moving to HEAD^
+[33ma38e7ef[m HEAD@{3}: reset: moving to HEAD^
+[33mc107bca[m HEAD@{4}: commit: Assert and verify
+[33ma38e7ef[m HEAD@{5}: reset: moving to HEAD^
+[33me366455[m HEAD@{6}: reset: moving to HEAD
+[33me366455[m HEAD@{7}: commit: Assert and verify
+[33ma38e7ef[m HEAD@{8}: commit (amend): IInvokedMethodListener
+[33ma9735c0[m HEAD@{9}: commit: IInvokedMethodListener
+[33m6fc37ec[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/assert_verify[m[33m, [m[1;31morigin/feature/uploadFile[m[33m, [m[1;32mfeature/uploadFile[m[33m)[m HEAD@{10}: checkout: moving from feature/uploadFile to feature/assert_verify
+[33m6fc37ec[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/assert_verify[m[33m, [m[1;31morigin/feature/uploadFile[m[33m, [m[1;32mfeature/uploadFile[m[33m)[m HEAD@{11}: commit: upload files 2
+[33m7638d6d[m HEAD@{12}: commit: upload files
+[33m2133a6f[m[33m ([m[1;31morigin/feature/dataTable[m[33m, [m[1;32mfeature/dataTable[m[33m)[m HEAD@{13}: checkout: moving from feature/dataTable to feature/uploadFile
+[33m2133a6f[m[33m ([m[1;31morigin/feature/dataTable[m[33m, [m[1;32mfeature/dataTable[m[33m)[m HEAD@{14}: merge origin/feature/dataTable: Merge made by the 'ort' strategy.
+[33m6879d44[m HEAD@{15}: commit (amend): locator_dynamic
+[33m5b0dc8c[m HEAD@{16}: commit: locator_dynamic
+[33mb596a5b[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{17}: pull --no-stat -v --progress origin main: Fast-forward
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{18}: checkout: moving from main to feature/dataTable
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{19}: checkout: moving from feature/dynamic_locator to main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{20}: checkout: moving from main to feature/dynamic_locator
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{21}: checkout: moving from feature/dynamic_locator to main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{22}: reset: moving to 842b06a337f79a2f9c07a198be1ea9a114ac26ea
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{23}: rebase (finish): returning to refs/heads/feature/dynamic_locator
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{24}: rebase (start): checkout refs/heads/main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{25}: checkout: moving from main to feature/dynamic_locator
+[33m0521f89[m[33m ([m[1;32mmain[m[33m)[m HEAD@{26}: merge origin/main: Fast-forward
+[33m9762c18[m HEAD@{27}: checkout: moving from feature/dynamic_locator to main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{28}: Branch: renamed refs/heads/dynamic_locator to refs/heads/feature/dynamic_locator
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{30}: checkout: moving from dynamic_locator_h to dynamic_locator
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{31}: checkout: moving from main to dynamic_locator_h
+[33m9762c18[m HEAD@{32}: reset: moving to 9762c18fdd34ca1d0de4d9d9ed814631b380e7f8
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{33}: rebase (finish): returning to refs/heads/main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{34}: rebase (start): checkout refs/heads/dynamic_locator_h
+[33m9762c18[m HEAD@{35}: reset: moving to 9762c18fdd34ca1d0de4d9d9ed814631b380e7f8
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{36}: rebase (finish): returning to refs/heads/main
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{37}: rebase (start): checkout HEAD
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{38}: checkout: moving from dynamic_locator to dynamic_locator_h
+[33m842b06a[m[33m ([m[1;31morigin/dynamic_locator[m[33m, [m[1;32mfeature/dynamic_locator[m[33m)[m HEAD@{39}: commit: locator_dynamic
+[33m9762c18[m HEAD@{40}: checkout: moving from main to dynamic_locator
+[33m9762c18[m HEAD@{41}: pull --no-stat -v --progress origin main: Fast-forward
+[33m8feb263[m HEAD@{42}: merge origin/main: Fast-forward
+[33m753e6c6[m HEAD@{43}: checkout: moving from feature/add_file to main
+[33mcfbf81d[m[33m ([m[1;31morigin/feature/add_file[m[33m, [m[1;32mfeature/add_file[m[33m)[m HEAD@{44}: commit: 2nd commit
+[33m753e6c6[m HEAD@{45}: checkout: moving from main to feature/add_file
+[33m753e6c6[m HEAD@{46}: Branch: renamed refs/heads/master to refs/heads/main
+[33m753e6c6[m HEAD@{48}: commit (initial): first commit
