@@ -31,4 +31,10 @@ public class GlobalConstants {
     public static final String REPORTING_PATH = PROJECT_PATH + SEPARATOR + "htmlReportNG" + SEPARATOR;
     public static final String EXTENT_PATH = PROJECT_PATH + SEPARATOR + "htmlExtent" + SEPARATOR;
     public static final String ALLURE_PATH = PROJECT_PATH + SEPARATOR + "htmlAllure" + SEPARATOR;
+
+    // Jira
+    public static final String JIRA_SITE_URL = "https://thanhhang8798.atlassian.net/";
+    public static final String JIRA_USERNAME = "thanhhang8798@gmail.com";
+    public static final String JIRA_API_KEY = "ATATT3xFfGF0Y3q2hGLu1PmfSVFLnXXa_LpR29cN9s0rUZk0PaZP-4p8ARV_2EXFe66SkhmY6u061UMG7Sk0UarqfgLgQE8GB3LjovK8YcqMl6Sv-OqrAgStjEjQ3y2i0rridG6wKckQ-2njkN7OOTwuRcg25GTKzMWcKOalWNHiCtq9dMkWhqk=D7A4C934";
+    public static final String JIRA_PROJECT_KEY = "FRAMEWORK";
 }
