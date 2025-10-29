@@ -9,8 +9,6 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-.logs
-.htmlAllure
 *.iws
 *.iml
 *.ipr
@@ -39,3 +37,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/htmlAllure/
+/logs/
