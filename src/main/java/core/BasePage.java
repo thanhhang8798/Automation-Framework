@@ -238,6 +238,23 @@ public class BasePage {
         }
     }
 
+    public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childLocator, String textItem, String... restParameter) {
+        clickToElement(driver, castParameter(parentLocator, restParameter));
+
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childLocator)));
+
+        List<WebElement> allItems = getListElement(driver, childLocator);
+
+        for (WebElement item : allItems) {
+            if (item.getText().equals(textItem)) {
+                item.click();
+                sleepInSecond(1);
+                break;
+            }
+        }
+    }
+
     public String getElementDOMAttribute(WebDriver driver, String locator, String attributeName) {
         return getWebElement(driver, locator).getDomAttribute(attributeName);
     }
@@ -379,6 +396,11 @@ public class BasePage {
         sleepInSecond(3);
     }
 
+    public void clickToElementByJS(WebDriver driver, String locator, String... restParameter) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getWebElement(driver, castParameter(locator, restParameter)));
+        sleepInSecond(3);
+    }
+
     public String getElementTextByJS(WebDriver driver, String locator) {
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].textContent;", getWebElement(driver, locator));
     }
@@ -485,6 +507,83 @@ public class BasePage {
         return waitElementInvisible(driver, BasePageUI.SPINNER_ICON);
     }
 
+    @Step("Enter to {0} textbox by name with value {1}")
+    public void enterToTextboxByName(WebDriver driver, String textboxNameAttribute, String valueToSendkey) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_NAME, textboxNameAttribute);
+        sendKeyToElement(driver, BasePageUI.TEXTBOX_BY_NAME, valueToSendkey, textboxNameAttribute);
+    }
+
+    @Step("Enter to {0} textbox by label with value {1}")
+    public void enterToTextboxByLabel(WebDriver driver, String textboxLabel, String valueToSendkey) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_LABEL, textboxLabel);
+        sendKeyToElement(driver, BasePageUI.TEXTBOX_BY_LABEL, valueToSendkey, textboxLabel);
+    }
+
+    @Step("Click to {0} button by text")
+    public void clickToButtonByContainsText(WebDriver driver, String buttonText) {
+        waitElementClickable(driver, BasePageUI.BUTTON_BY_CONTAINS_TEXT, buttonText);
+        clickToElement(driver, BasePageUI.BUTTON_BY_CONTAINS_TEXT, buttonText);
+    }
+
+    @Step("Click to {0} module by text")
+    public void clickToLinkModuleByText(WebDriver driver, String moduleLink) {
+        waitElementClickable(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleLink);
+        clickToElement(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleLink);
+    }
+
+    @Step("Click to {0} tab by text")
+    public void clickToTabByText(WebDriver driver, String tabName) {
+        waitElementClickable(driver, BasePageUI.TAB_BY_TEXT, tabName);
+        clickToElement(driver, BasePageUI.TAB_BY_TEXT, tabName);
+    }
+
+    @Step("Get {0} value by name")
+    public String getTextboxValueByName(WebDriver driver, String textboxNameAttribute) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_NAME, textboxNameAttribute);
+        return getElementDOMProperty(driver, BasePageUI.TEXTBOX_BY_NAME, "value", textboxNameAttribute);
+    }
+
+    @Step("Get {0} value by label")
+    public String getTextboxValueByLabel(WebDriver driver, String textboxLabel) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_LABEL, textboxLabel);
+        return getElementDOMProperty(driver, BasePageUI.TEXTBOX_BY_LABEL, "value", textboxLabel);
+    }
+
+    @Step("Check to {0} radio")
+    public void checkToRadioByText(WebDriver driver, String radioText) {
+        clickToElementByJS(driver, BasePageUI.RADIO_BY_TEXT, radioText);
+    }
+
+    @Step("Choose {0} dropdown with value {1}")
+    public void selectDropdownByLabelAndText(WebDriver driver, String dropdownLabel, String valueToSelect) {
+        waitElementClickable(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, dropdownLabel);
+        selectItemInCustomDropdown(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, BasePageUI.CHILDREN_DROPDOWN_BY_TEXT, valueToSelect, dropdownLabel);
+    }
+
+    @Step("Enter {0} to datepicker")
+    public void enterToDatePickerByLabel(WebDriver driver, String datePickerLabel, String valueToSendkey) {
+        waitElementVisible(driver, BasePageUI.DATEPICKER_BY_LABEL, datePickerLabel);
+        sendKeyToElement(driver, BasePageUI.DATEPICKER_BY_LABEL, valueToSendkey, datePickerLabel);
+    }
+
+    @Step("Verify {0} radio is selected")
+    public boolean isRadioSelectedByText(WebDriver driver, String radioText) {
+//        waitElementVisible(driver, BasePageUI.RADIO_BY_TEXT, radioText);
+        return isElementSelected(driver, BasePageUI.RADIO_BY_TEXT, radioText);
+    }
+
+    @Step("Get value of {0} dropdown")
+    public String getDropdownValueByLabel(WebDriver driver, String dropdownLabel) {
+        waitElementVisible(driver, BasePageUI.DROPDOWN_VALUE_BY_LABEL, dropdownLabel);
+        return getElementText(driver, BasePageUI.DROPDOWN_VALUE_BY_LABEL, dropdownLabel);
+    }
+
+    @Step("Verify {0} toast message is displayed")
+    public boolean isToastMassageDisplayed(WebDriver driver, String messageText) {
+        waitElementVisible(driver, BasePageUI.TOAST_MESSAGE_BY_TEXT, messageText);
+        return isElementDisplayed(driver, BasePageUI.TOAST_MESSAGE_BY_TEXT, messageText);
+    }
+
     // opencart
     public UserHomePO clickToLogoutLinkAtUserSite(WebDriver driver) {
         waitElementClickable(driver, UserRegisterPageUI.LOGOUT_LINK);
@@ -581,4 +680,6 @@ public class BasePage {
         waitElementClickable(driver, BasePageUI.LINK_BY_TEXT, linkText);
         clickToElement(driver, BasePageUI.LINK_BY_TEXT, linkText);
     }
+
+
 }

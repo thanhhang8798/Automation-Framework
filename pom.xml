@@ -36,7 +36,7 @@
             <artifactId>testng</artifactId>
             <version>7.11.0</version>
             <scope>maven-orangehrm</scope>
-            <scope>automation-framework</scope>
+<!--            <scope>automation-framework</scope>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->

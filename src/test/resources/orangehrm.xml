@@ -5,14 +5,14 @@
 
     <listeners>
         <listener class-name="core.MethodListener"></listener>
-<!--        <listener class-name="reportConfig.AllureTestListener"></listener>-->
-        <listener class-name="jiraConfigs.JiraListener"></listener>
+        <listener class-name="reportConfig.AllureTestListener"></listener>
+<!--        <listener class-name="jiraConfigs.JiraListener"></listener>-->
     </listeners>
 
     <test name="Run on Firefox broser">
-        <parameter name="browser" value="Firefox"></parameter>
+        <parameter name="browser" value="Chrome"></parameter>
         <classes>
-            <class name="orangehrm.Login_12_Jira"/>
+            <class name="orangehrm.Login_13_Pattern_Object"/>
         </classes>
     </test>
 
