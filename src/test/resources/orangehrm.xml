@@ -10,10 +10,11 @@
     </listeners>
 
     <test name="Run on Firefox broser">
-        <parameter name="browser" value="Chrome"></parameter>
+        <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="orangehrm.Login_13_Pattern_Object"/>
+            <class name="orangehrm.Login_11_Allure_Report"/>
         </classes>
     </test>
+
 
 </suite>

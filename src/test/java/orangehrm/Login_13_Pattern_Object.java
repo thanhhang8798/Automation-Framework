@@ -1,6 +1,7 @@
 package orangehrm;
 
 import core.BaseTest;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -15,8 +16,9 @@ import pageObjects.orangeHRM.LoginPageObject;
 import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
 import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
 
+@Epic("OrangeHrm auto test")
+@Feature("Login")
 public class Login_13_Pattern_Object extends BaseTest {
-    // cách 3: Page generator manager class
 
     private WebDriver driver;
     String employeeID, adminUsername, adminPassword, employeeFirstName, employeeLastName;
@@ -34,6 +36,7 @@ public class Login_13_Pattern_Object extends BaseTest {
         employeeLastName = "Hang";
     }
 
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void Employee_01_CreateNewEmployee() {
         // Action of login
@@ -55,6 +58,8 @@ public class Login_13_Pattern_Object extends BaseTest {
         addEmployeePage.enterToTextboxByName(driver, "lastName", employeeLastName);
         employeeID = addEmployeePage.getEmployeeID();
         addEmployeePage.clickToButtonByContainsText(driver, "Save");
+        Assert.assertTrue(addEmployeePage.isToastMassageDisplayed(driver, "Successfully Saved"));
+
 
         personalDetailPage = PageGenerator.getPage(PersonalDetailPageObject.class, driver);
         // Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));

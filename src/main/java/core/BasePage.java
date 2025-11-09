@@ -241,10 +241,8 @@ public class BasePage {
     public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childLocator, String textItem, String... restParameter) {
         clickToElement(driver, castParameter(parentLocator, restParameter));
 
-        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childLocator)));
-
-        List<WebElement> allItems = getListElement(driver, childLocator);
+        List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(castParameter(childLocator, restParameter))));
 
         for (WebElement item : allItems) {
             if (item.getText().equals(textItem)) {
@@ -557,7 +555,7 @@ public class BasePage {
     @Step("Choose {0} dropdown with value {1}")
     public void selectDropdownByLabelAndText(WebDriver driver, String dropdownLabel, String valueToSelect) {
         waitElementClickable(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, dropdownLabel);
-        selectItemInCustomDropdown(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, BasePageUI.CHILDREN_DROPDOWN_BY_TEXT, valueToSelect, dropdownLabel);
+        selectItemInCustomDropdown(driver, BasePageUI.PARENT_DROPDOWN_BY_LABEL, BasePageUI.CHILDREN_DROPDOWN_BY_LABEL, valueToSelect, dropdownLabel);
     }
 
     @Step("Enter {0} to datepicker")
@@ -568,7 +566,6 @@ public class BasePage {
 
     @Step("Verify {0} radio is selected")
     public boolean isRadioSelectedByText(WebDriver driver, String radioText) {
-//        waitElementVisible(driver, BasePageUI.RADIO_BY_TEXT, radioText);
         return isElementSelected(driver, BasePageUI.RADIO_BY_TEXT, radioText);
     }
 

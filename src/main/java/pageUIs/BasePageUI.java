@@ -11,7 +11,7 @@ public class BasePageUI {
     public static final String TAB_BY_TEXT = "xpath=//a[text()='%s']";
     public static final String RADIO_BY_TEXT = "xpath=//label[contains(.,'%s')]/input[@type='radio']";
     public static final String PARENT_DROPDOWN_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div/div[@class='oxd-select-wrapper']";
-    public static final String CHILDREN_DROPDOWN_BY_TEXT = "xpath=//div[@class='oxd-select-wrapper']//span[text()='%s']";
+    public static final String CHILDREN_DROPDOWN_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div//div[@class='oxd-select-option']//span";
     public static final String DATEPICKER_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div//input[@placeholder='yyyy-mm-dd']";
     public static final String DROPDOWN_VALUE_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']";
     public static final String TOAST_MESSAGE_BY_TEXT = "xpath=//p[contains(@class,'oxd-text--toast-message') and text()='%s']";
