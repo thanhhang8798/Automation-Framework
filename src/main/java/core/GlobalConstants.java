@@ -3,7 +3,7 @@ package core;
 public class GlobalConstants {
     // wait infor
     public static final int LONG_TIMEOUT = 20;
-    public static final int SHORT_TIMEOUT = 10;
+    public static final int SHORT_TIMEOUT = 5;
 
     // system infor
     public static final String PROJECT_PATH = System.getProperty("user.dir");

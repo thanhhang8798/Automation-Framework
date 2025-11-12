@@ -3,13 +3,17 @@ package pageUIs;
 public class BasePageUI {
     // orangehrm
     public static final String SPINNER_ICON = "xpath=//div[@class='oxd-loading-spinner']";
-        // component
+    public static final String USER_DROPDOWN = "CSS=span.oxd-userdropdown-tab";
+    public static final String LOGOUT_LINK = "xpath=//ul[@class='oxd-dropdown-menu']//a[text()='Logout']";
+
+    // component
     public static final String TEXTBOX_BY_NAME = "CSS=input[name='%s']";
     public static final String TEXTBOX_BY_LABEL = "xpath=//label[text()=\"%s\"]/parent::div/following-sibling::div//input";
     public static final String BUTTON_BY_CONTAINS_TEXT = "xpath=//button[contains(.,'%s')]";
     public static final String LINK_MODULE_BY_TEXT = "xpath=//span[text()='%s']/parent::a";
     public static final String TAB_BY_TEXT = "xpath=//a[text()='%s']";
-    public static final String RADIO_BY_TEXT = "xpath=//label[contains(.,'%s')]/input[@type='radio']";
+    public static final String RADIO_BY_LABEL = "xpath=//label[contains(.,'%s')]/input[@type='radio']";
+    public static final String CHECKBOX_BY_LABEL = "xpath=//p[text()='%s']/following-sibling::div//input[@type='checkbox']";
     public static final String PARENT_DROPDOWN_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div/div[@class='oxd-select-wrapper']";
     public static final String CHILDREN_DROPDOWN_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div//div[@class='oxd-select-option']//span";
     public static final String DATEPICKER_BY_LABEL = "xpath=//label[text()='%s']/parent::div/following-sibling::div//input[@placeholder='yyyy-mm-dd']";

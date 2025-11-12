@@ -57,6 +57,10 @@ public class Login_13_Pattern_Object extends BaseTest {
         addEmployeePage.enterToTextboxByName(driver, "firstName", employeeFirstName);
         addEmployeePage.enterToTextboxByName(driver, "lastName", employeeLastName);
         employeeID = addEmployeePage.getEmployeeID();
+
+        addEmployeePage.clickToCheckboxByLabel(driver, "Create Login Details");
+        Assert.assertTrue(addEmployeePage.isCheckboxByLabelSelected(driver, "Create Login Details"));
+
         addEmployeePage.clickToButtonByContainsText(driver, "Save");
         Assert.assertTrue(addEmployeePage.isToastMassageDisplayed(driver, "Successfully Saved"));
 

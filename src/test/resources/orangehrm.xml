@@ -10,9 +10,9 @@
     </listeners>
 
     <test name="Run on Firefox broser">
-        <parameter name="browser" value="Firefox"></parameter>
+        <parameter name="browser" value="Chrome"></parameter>
         <classes>
-            <class name="orangehrm.Login_11_Allure_Report"/>
+            <class name="orangehrm.Login_14_Override_Timeout"/>
         </classes>
     </test>
 

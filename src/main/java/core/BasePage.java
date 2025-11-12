@@ -14,16 +14,20 @@ import pageObjects.nopCommerce.user.UserRegisterPageObject;
 //import pageObjects.nopCommerce.admin.AdminLoginPO;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
+import pageObjects.orangeHRM.LoginPageObject;
 import pageUIs.openCart.admin.AdminCustomerPageUI;
 import pageUIs.openCart.user.UserRegisterPageUI;
 import pageUIs.BasePageUI;
 
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 public class BasePage {
+    private int SHORT_TIMEOUT = GlobalConstants.SHORT_TIMEOUT;
+    private int LONG_TIMEOUT = GlobalConstants.LONG_TIMEOUT;
     public static BasePage getInstance() {
         return new BasePage();
     }
@@ -326,6 +330,51 @@ public class BasePage {
         return getWebElement(driver, castParameter(locator, restParameter)).isDisplayed();
     }
 
+    private void overrideGlobalTimeout(WebDriver driver, long timeInSecond) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeInSecond));
+    }
+    public boolean isElementUndisplayed(WebDriver driver, String locator) {
+        System.out.println("Start time = " + new Date().toString());
+        overrideGlobalTimeout(driver, SHORT_TIMEOUT);
+
+        List<WebElement> elements = getListElement(driver, locator);
+        overrideGlobalTimeout(driver, LONG_TIMEOUT);
+
+        if (elements.size() == 0) {
+            System.out.println("Element not in DOM");
+            System.out.println("End time = " + new Date().toString());
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            System.out.println("Element in DOM but invisible");
+            System.out.println("End time = " + new Date().toString());
+            return true;
+        } else {
+            System.out.println("Element in DOM and visible");
+            return false;
+        }
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locator, String... restParameter) {
+        System.out.println("Start time = " + new Date().toString());
+        overrideGlobalTimeout(driver, SHORT_TIMEOUT);
+
+        List<WebElement> elements = getListElement(driver, castParameter(locator, restParameter));
+        overrideGlobalTimeout(driver, LONG_TIMEOUT);
+
+        if (elements.size() == 0) {
+            System.out.println("Element not in DOM");
+            System.out.println("End time = " + new Date().toString());
+            return true;
+        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+            System.out.println("Element in DOM but invisible");
+            System.out.println("End time = " + new Date().toString());
+            return true;
+        } else {
+            System.out.println("Element in DOM and visible");
+            return false;
+        }
+    }
+
     public boolean isElementSelected(WebDriver driver, String locator) {
         return getWebElement(driver, locator).isSelected();
     }
@@ -441,62 +490,64 @@ public class BasePage {
 
 
     public WebElement waitElementVisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
 
     public WebElement waitElementVisible(WebDriver driver, String locator, String... restParameter) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions
                 .visibilityOfElementLocated(getByLocator(castParameter(locator, restParameter))));
     }
 
     public List<WebElement> waitListElementVisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(locator)));
     }
 
     public List<WebElement> waitListElementVisible(WebDriver driver, String locator, String... restParameter) {
 
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
-//         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castParameter(locator, restParameter))));
-
     }
 
     public boolean waitElementSelected(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeSelected(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeSelected(getByLocator(locator)));
     }
 
     public boolean waitElementSelected(WebDriver driver, String locator, String... restParameter) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions
                 .elementToBeSelected(getByLocator(castParameter(locator, restParameter))));
     }
 
     public WebElement waitElementClickable(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
     }
 
     public WebElement waitElementClickable(WebDriver driver, WebElement element) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(element));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebElement waitElementClickable(WebDriver driver, String locator, String... restParameter) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions
                 .elementToBeClickable(getByLocator(castParameter(locator, restParameter))));
     }
 
     public boolean waitElementInvisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
     }
 
     public boolean waitListElementInvisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver, locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver, locator)));
+    }
+
+    public boolean waitListElementInvisibleNotInDOM(WebDriver driver, String locator, String... restParameter) {
+        return new WebDriverWait(driver, Duration.ofSeconds(SHORT_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver, castParameter(locator, restParameter))));
     }
 
     public WebElement waitElementPresence(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(locator)));
     }
 
     public List<WebElement> waitListElementPresence(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(locator)));
     }
 
     // orangehrm
@@ -524,9 +575,9 @@ public class BasePage {
     }
 
     @Step("Click to {0} module by text")
-    public void clickToLinkModuleByText(WebDriver driver, String moduleLink) {
-        waitElementClickable(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleLink);
-        clickToElement(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleLink);
+    public void clickToLinkModuleByText(WebDriver driver, String moduleText) {
+        waitElementClickable(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
+        clickToElement(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
     }
 
     @Step("Click to {0} tab by text")
@@ -549,7 +600,12 @@ public class BasePage {
 
     @Step("Check to {0} radio")
     public void checkToRadioByText(WebDriver driver, String radioText) {
-        clickToElementByJS(driver, BasePageUI.RADIO_BY_TEXT, radioText);
+        clickToElementByJS(driver, BasePageUI.RADIO_BY_LABEL, radioText);
+    }
+
+    @Step("Check to {0} checkbox")
+    public void clickToCheckboxByLabel(WebDriver driver, String labelText) {
+        clickToElementByJS(driver, BasePageUI.CHECKBOX_BY_LABEL, labelText);
     }
 
     @Step("Choose {0} dropdown with value {1}")
@@ -566,7 +622,7 @@ public class BasePage {
 
     @Step("Verify {0} radio is selected")
     public boolean isRadioSelectedByText(WebDriver driver, String radioText) {
-        return isElementSelected(driver, BasePageUI.RADIO_BY_TEXT, radioText);
+        return isElementSelected(driver, BasePageUI.RADIO_BY_LABEL, radioText);
     }
 
     @Step("Get value of {0} dropdown")
@@ -579,6 +635,32 @@ public class BasePage {
     public boolean isToastMassageDisplayed(WebDriver driver, String messageText) {
         waitElementVisible(driver, BasePageUI.TOAST_MESSAGE_BY_TEXT, messageText);
         return isElementDisplayed(driver, BasePageUI.TOAST_MESSAGE_BY_TEXT, messageText);
+    }
+
+    @Step("Verify {0} checkbox is selected")
+    public boolean isCheckboxByLabelSelected(WebDriver driver, String dropdownLabel) {
+        return isElementSelected(driver, BasePageUI.CHECKBOX_BY_LABEL, dropdownLabel);
+    }
+
+    @Step("Verify {0} module is displayed")
+    public boolean isModuleByTextInMenuDisplayed(WebDriver driver, String moduleText) {
+        waitElementVisible(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
+        return isElementDisplayed(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
+    }
+
+    @Step("Verify {0} module is undisplayed")
+    public boolean isModuleByTextInMenuUnDisplayed(WebDriver driver, String moduleText) {
+        waitListElementInvisibleNotInDOM(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
+        return isElementUndisplayed(driver, BasePageUI.LINK_MODULE_BY_TEXT, moduleText);
+    }
+
+    @Step("Click to logout link")
+    public LoginPageObject clickToLogoutLink(WebDriver driver) {
+        waitElementClickable(driver, BasePageUI.USER_DROPDOWN);
+        clickToElement(driver, BasePageUI.USER_DROPDOWN);
+        waitElementClickable(driver, BasePageUI.LOGOUT_LINK);
+        clickToElement(driver, BasePageUI.LOGOUT_LINK);
+        return PageGenerator.getPage(LoginPageObject.class, driver);
     }
 
     // opencart
@@ -677,6 +759,5 @@ public class BasePage {
         waitElementClickable(driver, BasePageUI.LINK_BY_TEXT, linkText);
         clickToElement(driver, BasePageUI.LINK_BY_TEXT, linkText);
     }
-
 
 }
