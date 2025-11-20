@@ -40,5 +40,7 @@ public class BasePageUI {
     // jquery
     public static final String UPLOAD_FILE_TYPE = "css=input[type='file']";
 
+    // techpanda
+    public static final String TEXTBOX_BY_NAME_TECHPANDA = "css=input[name='%s']";
 
 }

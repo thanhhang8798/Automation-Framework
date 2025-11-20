@@ -54,7 +54,7 @@ public class Common_Login extends BaseTest{
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
 
         // get cookies
-        nopCommerceCookies = userHomePage.getAllCookies(driver);
+        nopCommerceCookies = userHomePage.getPageCookies(driver);
         System.out.println(nopCommerceCookies);
 
         driver.quit();

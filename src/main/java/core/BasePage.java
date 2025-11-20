@@ -62,6 +62,15 @@ public class BasePage {
     }
 
 
+    public Set<Cookie> getPageCookies(WebDriver driver) {
+        return driver.manage().getCookies();
+    }
+
+    public void setPageCookies(WebDriver driver, Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+    }
 
     private Alert waitAlertPresence(WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
@@ -166,17 +175,6 @@ public class BasePage {
 
     private By getByXpath(String locator) {
         return By.xpath(locator);
-    }
-
-    public Set<Cookie> getAllCookies(WebDriver driver) {
-        return driver.manage().getCookies();
-    }
-
-    public void setCookies(WebDriver driver, Set<Cookie> cookies) {
-        for (Cookie cookie : cookies) {
-            driver.manage().addCookie(cookie);
-        }
-        sleepInSecond(3);
     }
 
     private WebElement getWebElement(WebDriver driver, String locator){
@@ -760,4 +758,9 @@ public class BasePage {
         clickToElement(driver, BasePageUI.LINK_BY_TEXT, linkText);
     }
 
+    // techpanda
+    public void inputToTextboxByName(WebDriver driver, String textboxName, String valueToSendkey) {
+        waitElementVisible(driver, BasePageUI.TEXTBOX_BY_NAME_TECHPANDA, textboxName);
+        sendKeyToElement(driver, BasePageUI.TEXTBOX_BY_NAME_TECHPANDA, valueToSendkey, textboxName);
+    }
 }

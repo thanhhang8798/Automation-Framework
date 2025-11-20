@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM - UI automation test" verbose="1">
+    <parameter name="webUrl" value="https://live.techpanda.org/"></parameter>
+
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+<!--        <listener class-name="reportConfig.AllureTestListener"></listener>-->
+<!--        <listener class-name="jiraConfigs.JiraListener"></listener>-->
+    </listeners>
+
+    <test name="Run on Firefox broser">
+        <parameter name="browser" value="Firefox"></parameter>
+        <classes>
+            <class name="techpanda.common.LoginInformation"/>
+        </classes>
+    </test>
+
+
+</suite>

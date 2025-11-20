@@ -27,7 +27,7 @@ public class Topic_09_Share_State_Cookies extends BaseTest{
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
 
         // pre-condition: login by cookie
-        userHomePage.setCookies(driver, Common_Login.nopCommerceCookies);
+        userHomePage.setPageCookies(driver, Common_Login.nopCommerceCookies);
         userHomePage.refreshPage(driver);
     }
 
