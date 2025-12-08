@@ -12,9 +12,10 @@ public class RegisterAccountPO extends BasePage {
         this.driver = driver;
     }
 
-    public void clickToRegisterButton() {
+    public MyAccountPO clickToRegisterButton() {
         waitElementClickable(driver, RegisterAccountPageUI.REGISTER_BUTTON);
         clickToElement(driver, RegisterAccountPageUI.REGISTER_BUTTON);
+        return PageGenerator.getPage(MyAccountPO.class, driver);
     }
 
     public MyAccountPO acceptContinueAlert() {

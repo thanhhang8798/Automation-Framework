@@ -10,9 +10,10 @@
     </listeners>
 
     <test name="Run on Firefox broser">
-        <parameter name="browser" value="Firefox"></parameter>
+        <parameter name="browser" value="Chrome"></parameter>
         <classes>
             <class name="techpanda.common.LoginInformation"/>
+            <class name="techpanda.Topic_02_Close_Browser"/>
         </classes>
     </test>
 

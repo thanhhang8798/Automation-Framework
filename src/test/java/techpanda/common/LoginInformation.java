@@ -3,6 +3,7 @@ package techpanda.common;
 import core.BaseTest;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.PageGenerator;
 import pageObjects.techpanda.HomePO;
@@ -37,10 +38,10 @@ public class LoginInformation extends BaseTest {
         registerAccountPage.inputToTextboxByName(driver, "email", emailAddress);
         registerAccountPage.inputToTextboxByName(driver, "password", password);
         registerAccountPage.inputToTextboxByName(driver, "confirmation", confirmPassword);
-        registerAccountPage.clickToRegisterButton();
+        myAccountPage = registerAccountPage.clickToRegisterButton();
 
-        myAccountPage = registerAccountPage.acceptContinueAlert();
-        verifyTrue(myAccountPage.isRegisterSuccessMessageDisplayed());
+//        myAccountPage = registerAccountPage.acceptContinueAlert();
+        Assert.assertTrue(myAccountPage.isRegisterSuccessMessageDisplayed());
 
         cookies = myAccountPage.getPageCookies(driver);
 
@@ -53,7 +54,7 @@ public class LoginInformation extends BaseTest {
     }
 
 
-    @AfterClass
+    @AfterTest
     public void afterClass() {
 
     }

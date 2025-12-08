@@ -10,15 +10,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.techpanda.MyAccountPO;
 import pageObjects.techpanda.HomePO;
 import pageObjects.techpanda.LoginPO;
+import pageObjects.techpanda.MyAccountPO;
 import pageObjects.techpanda.RegisterAccountPO;
 import techpanda.common.LoginInformation;
 
 import java.util.Set;
 
-public class Topic_01_Cookie extends BaseTest {
+public class Topic_02_Close_Browser extends BaseTest {
     private WebDriver driver;
 
     @Parameters({"webUrl", "browser"})
@@ -34,7 +34,7 @@ public class Topic_01_Cookie extends BaseTest {
         loginPage.refreshPage(driver);
 
         myAccountPage = PageGenerator.getPage(MyAccountPO.class, driver);
-        Assert.assertEquals(myAccountPage.getMyAccountPageTitle(), "MY DASHBOARD");
+        Assert.assertEquals(myAccountPage.getMyAccountPageTitle(), "MY DASHBOARD///");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class Topic_01_Cookie extends BaseTest {
     }
 
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void afterClass() {
         closeBrowser();
     }

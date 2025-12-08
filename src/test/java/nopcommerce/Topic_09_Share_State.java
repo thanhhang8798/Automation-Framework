@@ -2,7 +2,6 @@ package nopcommerce;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v134.page.Page;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

@@ -15,4 +15,9 @@ public class MyAccountPO extends BasePage {
         waitElementVisible(driver, MyAccountPageUI.SUCCESS_MESSAGE);
         return isElementDisplayed(driver, MyAccountPageUI.SUCCESS_MESSAGE);
     }
+
+    public String getMyAccountPageTitle() {
+        waitElementVisible(driver, MyAccountPageUI.MY_DASHBOARD_TITLE);
+        return getElementText(driver, MyAccountPageUI.MY_DASHBOARD_TITLE);
+    }
 }
