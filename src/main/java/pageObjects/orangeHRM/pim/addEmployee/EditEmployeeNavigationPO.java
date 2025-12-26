@@ -1,9 +1,9 @@
-package pageObjects.orangeHRM.editEmployeeNavigation;
+package pageObjects.orangeHRM.pim.addEmployee;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageUIs.orangeHRM.editEmployeeNavigation.EditEmployeeNavigationPageUI;
+import pageUIs.orangeHRM.pim.addEmployee.EditEmployeeNavigationPageUI;
 
 public class EditEmployeeNavigationPO extends BasePage {
     private WebDriver driver;

@@ -4,6 +4,7 @@ import core.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageUIs.orangeHRM.DashboardPageUI;
 
 public class DashboardPageObject extends BasePage {

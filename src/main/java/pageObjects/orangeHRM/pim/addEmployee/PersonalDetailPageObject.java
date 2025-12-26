@@ -1,9 +1,8 @@
-package pageObjects.orangeHRM.editEmployeeNavigation;
+package pageObjects.orangeHRM.pim.addEmployee;
 
-import core.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import pageUIs.orangeHRM.editEmployeeNavigation.PersonalDetailPageUI;
+import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
 
 public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     private WebDriver driver;
@@ -29,5 +28,16 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     public String getEmployeeIDTextboxValue() {
         waitElementVisible(driver, PersonalDetailPageUI.EMPLOYEE_ID_TEXTBOX);
         return getElementDOMProperty(driver, PersonalDetailPageUI.EMPLOYEE_ID_TEXTBOX, "value");
+    }
+
+    public void clickToEmployeeImage() {
+        waitElementClickable(driver, PersonalDetailPageUI.UPLOAD_PROFILE_IMAGE);
+        clickToElement(driver, PersonalDetailPageUI.UPLOAD_PROFILE_IMAGE);
+    }
+
+    public void isUploadImageSuccessMessageDisplayed() {
+    }
+
+    public boolean isUploadImageSuccess() {
     }
 }

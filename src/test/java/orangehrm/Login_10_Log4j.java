@@ -3,20 +3,19 @@ package orangehrm;
 import core.BaseTest;
 import core.GlobalConstants;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.AddEmployeePageObject;
+import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
 import pageObjects.orangeHRM.DashboardPageObject;
-import pageObjects.orangeHRM.EmployeeListPageObject;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.DependentsPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.JobPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.ContactDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.DependentsPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.JobPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 public class Login_10_Log4j extends BaseTest {
     private WebDriver driver;

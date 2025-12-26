@@ -12,7 +12,7 @@
     <test name="Run on Firefox broser">
         <parameter name="browser" value="Chrome"></parameter>
         <classes>
-            <class name="orangehrm.Login_14_Override_Timeout"/>
+            <class name="orangehrm.Login_15_Live_Code"/>
         </classes>
     </test>
 

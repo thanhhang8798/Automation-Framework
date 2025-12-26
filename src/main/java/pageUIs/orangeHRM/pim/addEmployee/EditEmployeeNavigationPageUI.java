@@ -1,4 +1,4 @@
-package pageUIs.orangeHRM.editEmployeeNavigation;
+package pageUIs.orangeHRM.pim.addEmployee;
 
 public class EditEmployeeNavigationPageUI {
     public static final String PERSONAL_DETAIL_LINK = "xpath=//a[text()='Personal Details']";

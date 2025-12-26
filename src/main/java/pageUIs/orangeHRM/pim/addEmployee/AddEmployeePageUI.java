@@ -1,4 +1,4 @@
-package pageUIs.orangeHRM;
+package pageUIs.orangeHRM.pim.addEmployee;
 
 public class AddEmployeePageUI {
     public static final String FIRST_NAME_TEXTBOX = "xpath=//input[@name='firstName']";

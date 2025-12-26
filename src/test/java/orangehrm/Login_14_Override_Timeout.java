@@ -6,20 +6,17 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.AddEmployeePageObject;
+import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
 import pageObjects.orangeHRM.DashboardPageObject;
-import pageObjects.orangeHRM.EmployeeListPageObject;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
-
-import java.util.Random;
+import pageObjects.orangeHRM.pim.addEmployee.ContactDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 @Epic("OrangeHrm auto test")
 @Feature("Login")

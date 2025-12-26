@@ -8,7 +8,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.orangeHRM.*;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 public class Login_04_Page_Object extends BaseTest {
     private WebDriver driver;

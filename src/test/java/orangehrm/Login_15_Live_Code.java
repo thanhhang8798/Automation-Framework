@@ -2,7 +2,7 @@ package orangehrm;
 
 import core.BaseTest;
 import core.GlobalConstants;
-import io.qameta.allure.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -19,11 +19,9 @@ import pageObjects.orangeHRM.pim.addEmployee.DependentsPageObject;
 import pageObjects.orangeHRM.pim.addEmployee.JobPageObject;
 import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
-@Epic("OrangeHrm auto test")
-@Feature("Login")
-public class Login_11_Allure_Report extends BaseTest {
+public class Login_15_Live_Code extends BaseTest {
     private WebDriver driver;
-    String employeeID, employeeFirstName, employeeLastName;
+    String employeeID, employeeFirstName, employeeLastName, employeeImage;
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
@@ -34,49 +32,41 @@ public class Login_11_Allure_Report extends BaseTest {
 
         employeeFirstName = "Bui";
         employeeLastName = "Hang";
-    }
+        employeeImage = "lshopping.png";
 
-    @Description("Create new Employee")
-    @Story("Login")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void Employee_01_Login() {
-        // Action of login
         loginPage.enterToUsernameTextbox(GlobalConstants.ADMIN_ORANGEHRM_USERNAME);
         loginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_ORANGEHRM_PASSWORD);
         dashboardPage = loginPage.clickToLoginButton();
-
         Assert.assertTrue(dashboardPage.isLoadingSpinnerDisappear(driver));
-        employeeListPage = dashboardPage.clickToPIMModule();
-
-        Assert.assertTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
-        addEmployeePage = employeeListPage.clickToAddEmployeeButton();
-
-        Assert.assertTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
     }
 
-    @Description("Create new Employee")
-    @Story("Save new employee")
-    @Severity(SeverityLevel.NORMAL)
     @Test
-    public void Employee_02_AddNewEmployee() {
+    public void Employee_01_CreateNewEmployedd() {
+        employeeListPage = dashboardPage.clickToPIMModule();
+
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+        addEmployeePage = employeeListPage.clickToAddEmployeeButton();
+
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
         addEmployeePage.enterToFirstNameTextbox(employeeFirstName);
         addEmployeePage.enterToLastNameTextbox(employeeLastName);
         employeeID = addEmployeePage.getEmployeeID();
         personalDetailPage = addEmployeePage.clickToSaveButton();
         // Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));
 
-        Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        verifyEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
+        verifyEquals(personalDetailPage.getLastNameTextboxValue(),employeeLastName);
+        verifyEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
     }
 
-    @Description("Create new Employee")
-    @Story("Verify new employee")
-    @Severity(SeverityLevel.NORMAL)
     @Test
-    public void Employee_03_VerifyNewEmployee() {
-        Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
-        Assert.assertEquals(personalDetailPage.getLastNameTextboxValue(),employeeFirstName);
-        Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
+    public void Employee_02_Upload_Image() {
+        personalDetailPage.clickToEmployeeImage();
+        personalDetailPage.uploadMultipleFiles(driver, employeeImage);
+        personalDetailPage.isUploadImageSuccessMessageDisplayed();
+        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(personalDetailPage.isUploadImageSuccess());
     }
 
 
@@ -91,6 +81,6 @@ public class Login_11_Allure_Report extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+        closeBrowser();
     }
 }

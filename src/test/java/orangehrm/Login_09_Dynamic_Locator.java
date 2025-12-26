@@ -9,14 +9,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.AddEmployeePageObject;
+import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
 import pageObjects.orangeHRM.DashboardPageObject;
-import pageObjects.orangeHRM.EmployeeListPageObject;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.DependentsPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.JobPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.ContactDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.DependentsPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.JobPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 public class Login_09_Dynamic_Locator extends BaseTest {
     private WebDriver driver;

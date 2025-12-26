@@ -1,8 +1,10 @@
 package pageObjects.orangeHRM;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.ContactDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 public class PageGeneratorManager {
     public static LoginPageObject getLoginPage(WebDriver driver) {

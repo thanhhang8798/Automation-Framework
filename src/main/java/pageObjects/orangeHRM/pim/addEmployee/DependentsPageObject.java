@@ -1,6 +1,5 @@
-package pageObjects.orangeHRM.editEmployeeNavigation;
+package pageObjects.orangeHRM.pim.addEmployee;
 
-import core.BasePage;
 import org.openqa.selenium.WebDriver;
 
 public class DependentsPageObject extends EditEmployeeNavigationPO {

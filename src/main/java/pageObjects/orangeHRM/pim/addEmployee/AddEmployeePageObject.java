@@ -1,11 +1,10 @@
-package pageObjects.orangeHRM;
+package pageObjects.orangeHRM.pim.addEmployee;
 
 import core.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
-import pageUIs.orangeHRM.AddEmployeePageUI;
+import pageUIs.orangeHRM.pim.addEmployee.AddEmployeePageUI;
 import pageUIs.BasePageUI;
 
 public class AddEmployeePageObject extends BasePage {

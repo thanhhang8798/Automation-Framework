@@ -9,10 +9,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.*;
-import pageObjects.orangeHRM.editEmployeeNavigation.ContactDetailPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.DependentsPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.JobPageObject;
-import pageObjects.orangeHRM.editEmployeeNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.*;
+import pageObjects.orangeHRM.pim.employeeList.*;
 
 public class Login_07_Switch_Page extends BaseTest {
     private WebDriver driver;
