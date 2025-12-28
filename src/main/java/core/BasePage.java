@@ -279,6 +279,10 @@ public class BasePage {
         return getWebElement(driver, castParameter(locator, restParameter)).getText();
     }
 
+    public Dimension getElementSize(WebDriver driver, String locator) {
+        return getWebElement(driver, locator).getSize();
+    }
+
 
     public String getElementCss(WebDriver driver, String locator, String propertyName) {
         return getWebElement(driver, locator).getCssValue(propertyName);

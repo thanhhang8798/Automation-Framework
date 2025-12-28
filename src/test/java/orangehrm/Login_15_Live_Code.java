@@ -63,10 +63,14 @@ public class Login_15_Live_Code extends BaseTest {
     @Test
     public void Employee_02_Upload_Image() {
         personalDetailPage.clickToEmployeeImage();
+        Dimension beforeUpload = personalDetailPage.getEmployeeSize();
+
         personalDetailPage.uploadMultipleFiles(driver, employeeImage);
-        personalDetailPage.isUploadImageSuccessMessageDisplayed();
-        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
-        verifyTrue(personalDetailPage.isUploadImageSuccess());
+        personalDetailPage.clickToSaveButtonAtProfileContainer();
+
+        verifyTrue(personalDetailPage.isUploadImageSuccessMessageDisplayed());
+        personalDetailPage.isLoadingSpinnerDisappear(driver);
+        verifyTrue(personalDetailPage.isUploadEmployeeImageSuccess(beforeUpload));
     }
 
 

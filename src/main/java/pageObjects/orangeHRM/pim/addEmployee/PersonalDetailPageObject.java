@@ -1,6 +1,7 @@
 package pageObjects.orangeHRM.pim.addEmployee;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
 
@@ -31,13 +32,28 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     }
 
     public void clickToEmployeeImage() {
-        waitElementClickable(driver, PersonalDetailPageUI.UPLOAD_PROFILE_IMAGE);
-        clickToElement(driver, PersonalDetailPageUI.UPLOAD_PROFILE_IMAGE);
+        waitElementClickable(driver, PersonalDetailPageUI.EMPLOYEE_IMAGE);
+        clickToElement(driver, PersonalDetailPageUI.EMPLOYEE_IMAGE);
     }
 
-    public void isUploadImageSuccessMessageDisplayed() {
+    public Dimension getEmployeeSize() {
+        return getElementSize(driver, PersonalDetailPageUI.EMPLOYEE_IMAGE);
     }
 
-    public boolean isUploadImageSuccess() {
+    public void clickToSaveButtonAtProfileContainer() {
+        waitElementClickable(driver, PersonalDetailPageUI.SAVE_BUTTON_AT_PROFILE_CONTAINER);
+        clickToElement(driver, PersonalDetailPageUI.SAVE_BUTTON_AT_PROFILE_CONTAINER);
     }
+
+    public boolean isUploadImageSuccessMessageDisplayed() {
+        waitElementVisible(driver, PersonalDetailPageUI.UPLOAD_IMAGE_SUCCESS_MESSAGE);
+        return isElementDisplayed(driver, PersonalDetailPageUI.UPLOAD_IMAGE_SUCCESS_MESSAGE);
+    }
+
+    public boolean isUploadEmployeeImageSuccess(Dimension beforeUpload) {
+        Dimension afterUpload = getEmployeeSize();
+        return !beforeUpload.equals(afterUpload);
+    }
+
+
 }
