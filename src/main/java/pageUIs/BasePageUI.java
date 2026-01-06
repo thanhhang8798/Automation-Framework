@@ -5,6 +5,7 @@ public class BasePageUI {
     public static final String SPINNER_ICON = "xpath=//div[@class='oxd-loading-spinner']";
     public static final String USER_DROPDOWN = "CSS=span.oxd-userdropdown-tab";
     public static final String LOGOUT_LINK = "xpath=//ul[@class='oxd-dropdown-menu']//a[text()='Logout']";
+    public static final String SUCCESS_TOAST_MESSAGE ="CSS=div.oxd-toast-content--success";
 
     // component
     public static final String TEXTBOX_BY_NAME = "CSS=input[name='%s']";

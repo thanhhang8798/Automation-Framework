@@ -21,7 +21,8 @@ import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 
 public class Login_15_Live_Code extends BaseTest {
     private WebDriver driver;
-    String employeeID, employeeFirstName, employeeLastName, employeeImage;
+    String employeeID, employeeFirstName, employeeLastName, employeeImage, editFirstName, editLastName;
+    String driverLicenseNumber, licenseExpiryDate, nationality, maritalStatus, dateOfBirth, gender;
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
@@ -33,6 +34,14 @@ public class Login_15_Live_Code extends BaseTest {
         employeeFirstName = "Bui";
         employeeLastName = "Hang";
         employeeImage = "lshopping.png";
+        editFirstName = "Le";
+        editLastName = "Mai";
+        driverLicenseNumber = "12345678";
+        licenseExpiryDate = "2030-09-09";
+        nationality = "Vietnamese";
+        maritalStatus = "Single";
+        dateOfBirth = "2000-09-09";
+        gender = "Female";
 
         loginPage.enterToUsernameTextbox(GlobalConstants.ADMIN_ORANGEHRM_USERNAME);
         loginPage.enterToPasswordTextbox(GlobalConstants.ADMIN_ORANGEHRM_PASSWORD);
@@ -52,7 +61,6 @@ public class Login_15_Live_Code extends BaseTest {
         addEmployeePage.enterToLastNameTextbox(employeeLastName);
         employeeID = addEmployeePage.getEmployeeID();
         personalDetailPage = addEmployeePage.clickToSaveButton();
-        // Assert.assertTrue(personalDetalPage.isLoadingSpinnerDisappear(driver));
 
         verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
         verifyEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
@@ -68,11 +76,41 @@ public class Login_15_Live_Code extends BaseTest {
         personalDetailPage.uploadMultipleFiles(driver, employeeImage);
         personalDetailPage.clickToSaveButtonAtProfileContainer();
 
-        verifyTrue(personalDetailPage.isUploadImageSuccessMessageDisplayed());
+        verifyTrue(personalDetailPage.isSuccessToastMessageDisplayed(driver));
         personalDetailPage.isLoadingSpinnerDisappear(driver);
         verifyTrue(personalDetailPage.isUploadEmployeeImageSuccess(beforeUpload));
     }
 
+    @Test
+    public void Employee_03_Edit_Information() {
+        personalDetailPage.openEditNavigatorByNames("Personal Details");
+        personalDetailPage.isLoadingSpinnerDisappear(driver);
+
+        personalDetailPage.enterToFirstNameTextbox(editFirstName);
+        personalDetailPage.enterToLastNameTextbox(editLastName);
+        personalDetailPage.enterToDriverLicenseNumberTextbox(driverLicenseNumber);
+        personalDetailPage.enterToLicenseExpiryDateTextbox(licenseExpiryDate);
+        personalDetailPage.selectNationalityDropdown(nationality);
+        personalDetailPage.selectMaritalStatusDropdown(maritalStatus);
+        personalDetailPage.enterToDateOfBirthTextbox(dateOfBirth);
+        personalDetailPage.selectToGenderRadio(gender);
+        personalDetailPage.clickToSaveButtonAtProfileContainer();
+
+        personalDetailPage.isSuccessToastMessageDisplayed(driver);
+        personalDetailPage.isLoadingSpinnerDisappear(driver);
+
+        verifyEquals(personalDetailPage.getFirstNameTextboxValue(), editFirstName);
+        verifyEquals(personalDetailPage.getLastNameTextboxValue(), editLastName);
+        verifyEquals(personalDetailPage.getEmployeeIDTextboxValue(), employeeID);
+        verifyEquals(personalDetailPage.getDriverLicenseNumberTextboxValue(), driverLicenseNumber);
+        verifyEquals(personalDetailPage.getLicenseExpiryDateTexboxValue(), licenseExpiryDate);
+        verifyEquals(personalDetailPage.getNationalityDropdownValue(), nationality);
+        verifyEquals(personalDetailPage.getMaritalStatusDropdownValue(), maritalStatus);
+        verifyEquals(personalDetailPage.getDateOfBirthTextboxValue(), dateOfBirth);
+        verifyTrue(personalDetailPage.isGenderRadioSelected(gender));
+
+
+    }
 
     private LoginPageObject loginPage;
     private DashboardPageObject dashboardPage;
@@ -85,6 +123,6 @@ public class Login_15_Live_Code extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        closeBrowser();
+       // closeBrowser();
     }
 }

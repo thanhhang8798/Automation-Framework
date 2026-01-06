@@ -18,6 +18,7 @@ import pageObjects.orangeHRM.LoginPageObject;
 import pageUIs.openCart.admin.AdminCustomerPageUI;
 import pageUIs.openCart.user.UserRegisterPageUI;
 import pageUIs.BasePageUI;
+import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
 
 
 import java.time.Duration;
@@ -205,6 +206,18 @@ public class BasePage {
     public void sendKeyToElement(WebDriver driver, String locator, String keyToSend, String... restParameter) {
         getWebElement(driver, castParameter(locator, restParameter)).clear();
         getWebElement(driver, castParameter(locator, restParameter)).sendKeys(keyToSend);
+    }
+
+    public void sendKeyToElementByKeyboard(WebDriver driver, String locator, String keyToSend) {
+        Keys key = null;
+        if (GlobalConstants.OS_NAME.startsWith("Window")) {
+            key = Keys.CONTROL;
+        } else {
+            key = Keys.COMMAND;
+        }
+        getWebElement(driver, locator).sendKeys(key, "a", Keys.BACK_SPACE);
+        sleepInSecond(1);
+        getWebElement(driver, locator).sendKeys(keyToSend);
     }
 
     public void selectItemInDropdown(WebDriver driver, String locator, String valueItem) {
@@ -663,6 +676,11 @@ public class BasePage {
         waitElementClickable(driver, BasePageUI.LOGOUT_LINK);
         clickToElement(driver, BasePageUI.LOGOUT_LINK);
         return PageGenerator.getPage(LoginPageObject.class, driver);
+    }
+
+    public boolean isSuccessToastMessageDisplayed(WebDriver driver) {
+        waitElementVisible(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
+        return isElementDisplayed(driver, BasePageUI.SUCCESS_TOAST_MESSAGE);
     }
 
     // opencart

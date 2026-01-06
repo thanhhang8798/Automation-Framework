@@ -3,6 +3,7 @@ package pageObjects.orangeHRM.pim.addEmployee;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import pageUIs.orangeHRM.pim.addEmployee.AddEmployeePageUI;
 import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
 
 public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
@@ -45,15 +46,81 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
         clickToElement(driver, PersonalDetailPageUI.SAVE_BUTTON_AT_PROFILE_CONTAINER);
     }
 
-    public boolean isUploadImageSuccessMessageDisplayed() {
-        waitElementVisible(driver, PersonalDetailPageUI.UPLOAD_IMAGE_SUCCESS_MESSAGE);
-        return isElementDisplayed(driver, PersonalDetailPageUI.UPLOAD_IMAGE_SUCCESS_MESSAGE);
-    }
-
     public boolean isUploadEmployeeImageSuccess(Dimension beforeUpload) {
         Dimension afterUpload = getEmployeeSize();
         return !beforeUpload.equals(afterUpload);
     }
 
+    @Step("Input to First name textbox")
+    public void enterToFirstNameTextbox(String firstName) {
+        waitElementVisible(driver, PersonalDetailPageUI.FIRST_NAME_TEXTBOX);
+        sendKeyToElementByKeyboard(driver, PersonalDetailPageUI.FIRST_NAME_TEXTBOX, firstName);
+    }
 
+    @Step("Input to Last name textbox")
+    public void enterToLastNameTextbox(String lastName) {
+        waitElementVisible(driver, PersonalDetailPageUI.LAST_NAME_TEXTBOX);
+        sendKeyToElementByKeyboard(driver, PersonalDetailPageUI.LAST_NAME_TEXTBOX, lastName);
+    }
+
+    public void enterToDriverLicenseNumberTextbox(String driverLicenseNumber) {
+        waitElementVisible(driver, PersonalDetailPageUI.DRIVER_LICENSE_NUMBER_TEXTBOX);
+        sendKeyToElement(driver, PersonalDetailPageUI.DRIVER_LICENSE_NUMBER_TEXTBOX, driverLicenseNumber);
+    }
+
+    public void enterToLicenseExpiryDateTextbox(String licenseExpiryDate) {
+        waitElementVisible(driver, PersonalDetailPageUI.LICENSE_EXPIRY_DATE_TEXTBOX);
+        sendKeyToElement(driver, PersonalDetailPageUI.LICENSE_EXPIRY_DATE_TEXTBOX, licenseExpiryDate);
+    }
+
+    public void selectNationalityDropdown(String nationality) {
+        waitElementClickable(driver, PersonalDetailPageUI.NATIONALITY_DROPDOWN_PARENT);
+        selectItemInCustomDropdown(driver, PersonalDetailPageUI.NATIONALITY_DROPDOWN_PARENT, PersonalDetailPageUI.NATIONALITY_DROPDOWN_CHILD, nationality);
+    }
+
+    public void selectMaritalStatusDropdown(String maritalStatus) {
+        waitElementClickable(driver, PersonalDetailPageUI.MARITAL_STATUS_DROPDOWN_PARENT);
+        selectItemInCustomDropdown(driver, PersonalDetailPageUI.MARITAL_STATUS_DROPDOWN_PARENT, PersonalDetailPageUI.MARITAL_STATUS_DROPDOWN_CHILD, maritalStatus);
+    }
+
+    public void enterToDateOfBirthTextbox(String dateOfBirth) {
+        waitElementVisible(driver, PersonalDetailPageUI.DATE_OF_BIRTH_TEXTBOX);
+        sendKeyToElement(driver, PersonalDetailPageUI.DATE_OF_BIRTH_TEXTBOX, dateOfBirth);
+    }
+
+    public void selectToGenderRadio(String gender) {
+        clickToElementByJS(driver, PersonalDetailPageUI.GENDER_RADIO, gender);
+    }
+
+    public String getDriverLicenseNumberTextboxValue() {
+        waitElementVisible(driver, PersonalDetailPageUI.DRIVER_LICENSE_NUMBER_TEXTBOX);
+        return getElementDOMProperty(driver, PersonalDetailPageUI.DRIVER_LICENSE_NUMBER_TEXTBOX, "value");
+    }
+
+    public String getLicenseExpiryDateTexboxValue() {
+        waitElementVisible(driver, PersonalDetailPageUI.LICENSE_EXPIRY_DATE_TEXTBOX);
+        return getElementDOMProperty(driver, PersonalDetailPageUI.LICENSE_EXPIRY_DATE_TEXTBOX, "value");
+    }
+
+    public String getNationalityDropdownValue() {
+        waitElementVisible(driver, PersonalDetailPageUI.NATIONALITY_SELECTED_DROPDOWN);
+        return getElementText(driver, PersonalDetailPageUI.NATIONALITY_SELECTED_DROPDOWN);
+    }
+
+    public String getMaritalStatusDropdownValue() {
+        waitElementVisible(driver, PersonalDetailPageUI.MARITAL_STATUS_SELECTED_DROPDOWN);
+        return getElementText(driver, PersonalDetailPageUI.MARITAL_STATUS_SELECTED_DROPDOWN);
+    }
+
+    @Step("Verify date of birth")
+    public String getDateOfBirthTextboxValue() {
+        waitElementVisible(driver, PersonalDetailPageUI.DATE_OF_BIRTH_TEXTBOX);
+        return getElementDOMProperty(driver, PersonalDetailPageUI.DATE_OF_BIRTH_TEXTBOX, "value");
+    }
+
+    @Step("Verify gender is {0}")
+    public boolean isGenderRadioSelected(String gender) {
+        waitElementSelected(driver, PersonalDetailPageUI.GENDER_RADIO, gender);
+        return isElementSelected(driver, PersonalDetailPageUI.GENDER_RADIO, gender);
+    }
 }
