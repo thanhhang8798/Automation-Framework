@@ -18,4 +18,6 @@ public class PersonalDetailPageUI {
     public static final String GENDER_RADIO = "xpath=//label[text()='Gender']/parent::div/following-sibling::div//label[text()='%s']/input";
     public static final String NATIONALITY_SELECTED_DROPDOWN = "xpath=//label[text()='Nationality']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']";
     public static final String MARITAL_STATUS_SELECTED_DROPDOWN = "xpath=//label[text()='Marital Status']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']";
+    public static final String UPLOAD_FILE_ERROR_MESSAGE = "CSS=span.oxd-input-field-error-message";
+
 }

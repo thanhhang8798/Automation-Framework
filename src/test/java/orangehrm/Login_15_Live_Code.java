@@ -23,6 +23,7 @@ public class Login_15_Live_Code extends BaseTest {
     private WebDriver driver;
     String employeeID, employeeFirstName, employeeLastName, employeeImage, editFirstName, editLastName;
     String driverLicenseNumber, licenseExpiryDate, nationality, maritalStatus, dateOfBirth, gender;
+    String pdfFile, docsFile, excelFile, overLimitedImg;
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
@@ -33,7 +34,13 @@ public class Login_15_Live_Code extends BaseTest {
 
         employeeFirstName = "Bui";
         employeeLastName = "Hang";
+
         employeeImage = "lshopping.png";
+        pdfFile = "Doraemon_Long_Stories_v07.PDF";
+        docsFile = "Don_de_nghi_sat_hach.docx";
+        excelFile = "Bai_test.xlsx";
+        overLimitedImg = "4MB_img.jpg";
+
         editFirstName = "Le";
         editLastName = "Mai";
         driverLicenseNumber = "12345678";
@@ -71,6 +78,20 @@ public class Login_15_Live_Code extends BaseTest {
     @Test
     public void Employee_02_Upload_Image() {
         personalDetailPage.clickToEmployeeImage();
+
+        // upload file type not allow
+        personalDetailPage.uploadMultipleFiles(driver, excelFile);
+        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
+        personalDetailPage.uploadMultipleFiles(driver, docsFile);
+        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
+        personalDetailPage.uploadMultipleFiles(driver, pdfFile);
+        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
+
+        // upload file over maximum
+        personalDetailPage.uploadMultipleFiles(driver, overLimitedImg);
+        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "Attachment Size Exceeded");
+
+        // upload success
         Dimension beforeUpload = personalDetailPage.getEmployeeSize();
 
         personalDetailPage.uploadMultipleFiles(driver, employeeImage);
@@ -123,6 +144,6 @@ public class Login_15_Live_Code extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-       // closeBrowser();
+        closeBrowser();
     }
 }

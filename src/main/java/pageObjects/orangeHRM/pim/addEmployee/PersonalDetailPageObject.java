@@ -3,6 +3,7 @@ package pageObjects.orangeHRM.pim.addEmployee;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.devtools.v140.network.model.DataReceived;
 import pageUIs.orangeHRM.pim.addEmployee.AddEmployeePageUI;
 import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
 
@@ -122,5 +123,10 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     public boolean isGenderRadioSelected(String gender) {
         waitElementSelected(driver, PersonalDetailPageUI.GENDER_RADIO, gender);
         return isElementSelected(driver, PersonalDetailPageUI.GENDER_RADIO, gender);
+    }
+
+    public String getUploadFileErrorMessage() {
+        waitElementVisible(driver, PersonalDetailPageUI.UPLOAD_FILE_ERROR_MESSAGE);
+        return getElementText(driver, PersonalDetailPageUI.UPLOAD_FILE_ERROR_MESSAGE);
     }
 }
