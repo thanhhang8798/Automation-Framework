@@ -11,13 +11,40 @@
 <!--    <parameter name="webUrl" value="https://blueimp.github.io/jQuery-File-Upload/"></parameter>-->
 
 <!--    // topic 7: upload files/ gofile &ndash;&gt;-->
-    <parameter name="webUrl" value="https://gofile.io/home"></parameter>
+<!--    <parameter name="webUrl" value="https://gofile.io/home"></parameter>-->
 
-    <test name="Run on Firefox broser">
-        <parameter name="browser" value="Chrome"></parameter>
+<!--    // topic 8: config browser -->
+<!--    <parameter name="webUrl" value="https://rode.com/en/support/where-to-buy"></parameter>-->
+
+    <!--    // topic 9: sort -->
+    <parameter name="webUrl" value="https://www.saucedemo.com/"></parameter>
+
+    <test name="Run on Chrome browser">
+        <parameter name="browser" value="CHROME"></parameter>
         <classes>
-            <class name="jquery.Topic_07_Upload_Files_Gofile"/>
+            <class name="jquery.Topic_09_Sort"/>
         </classes>
     </test>
+
+<!--    <test name="Run on Edge browser">-->
+<!--        <parameter name="browser" value="EDGE"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="jquery.Topic_08_Config_Browser"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Run on Firefox browser">-->
+<!--        <parameter name="browser" value="Firefox"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="jquery.Topic_08_Config_Browser"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--        <test name="Run on Coccoc browser">-->
+<!--            <parameter name="browser" value="Coccoc"></parameter>-->
+<!--            <classes>-->
+<!--                <class name="jquery.Topic_08_Config_Browser"/>-->
+<!--            </classes>-->
+<!--        </test>-->
 
 </suite>

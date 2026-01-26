@@ -5,8 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -15,6 +18,7 @@ import org.testng.annotations.BeforeSuite;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Random;
 
 
@@ -36,12 +40,62 @@ public class BaseTest {
         switch (browserList) {
             case FIREFOX:
                 driver = new FirefoxDriver();
+
+//                FirefoxOptions fOptions = new FirefoxOptions();
+//                // disable notification popup of browser
+////                fOptions.addPreference("dom.webnotifications.enabled", false);
+//
+//                // disable location popup
+//                fOptions.addPreference("geo.enabled", false);
+//                fOptions.addPreference("geo.provider.use_corelocation", false);
+//
+//                driver = new FirefoxDriver(fOptions);
+
                 break;
             case CHROME:
                 driver = new ChromeDriver();
+
+//                ChromeOptions cOptions = new ChromeOptions();
+////                // đổi ngôn ngữ của browser
+//////                cOptions.addArguments("--lang=vi");
+////
+////                // disable notification popup of browser
+////                cOptions.addArguments("--disable-notification");
+//
+//                // disable location popup
+////                cOptions.addArguments("--disable-geolocation");
+//
+//                // disable automation infor bar
+//                cOptions.setExperimentalOption("useAutomationExtension", false);
+//                cOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+//                driver = new ChromeDriver(cOptions);
+
                 break;
             case EDGE:
                 driver = new EdgeDriver();
+
+//                EdgeOptions eOptions = new EdgeOptions();
+////
+////                // đổi ngôn ngữ của browser
+//////                eOptions.addArguments("--lang=vi");
+////
+////                // disable notification popup of browser
+////                eOptions.addArguments("--disable-notification");
+//
+//                // disable location popup
+////                eOptions.addArguments("--disable-geolocation");
+//
+//                // disable automation infor bar
+//                eOptions.setExperimentalOption("useAutomationExtension", false);
+//                eOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+////
+//                driver = new EdgeDriver(eOptions);
+
+                break;
+            case COCCOC:
+                ChromeOptions ccOptions = new ChromeOptions();
+                ccOptions.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
+                driver = new ChromeDriver(ccOptions);
                 break;
             case SAFARI:
                 driver = new SafariDriver();

@@ -9,10 +9,17 @@
 <!--        <listener class-name="jiraConfigs.JiraListener"></listener>-->
     </listeners>
 
-    <test name="Run on Firefox broser">
-        <parameter name="browser" value="Chrome"></parameter>
+    <test name="Run on Chrome browser">
+        <parameter name="browser" value="CHROME"></parameter>
         <classes>
-            <class name="orangehrm.Login_15_Live_Code"/>
+            <class name="orangehrm.Login_09_Dynamic_Locator"/>
+        </classes>
+    </test>
+
+    <test name="Run on Edge browser">
+        <parameter name="browser" value="EDGE"></parameter>
+        <classes>
+            <class name="orangehrm.Login_09_Dynamic_Locator"/>
         </classes>
     </test>
 
