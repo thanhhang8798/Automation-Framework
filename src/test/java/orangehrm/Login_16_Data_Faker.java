@@ -2,7 +2,6 @@ package orangehrm;
 
 import core.BaseTest;
 import core.GlobalConstants;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,44 +9,35 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
 import pageObjects.orangeHRM.DashboardPageObject;
-import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.pim.addEmployee.ContactDetailPageObject;
-import pageObjects.orangeHRM.pim.addEmployee.DependentsPageObject;
-import pageObjects.orangeHRM.pim.addEmployee.JobPageObject;
-import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
+import pageObjects.orangeHRM.pim.addEmployee.*;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
+import testdata.DataFakerConfig;
 
-public class Login_15_Live_Code extends BaseTest {
+public class Login_16_Data_Faker extends BaseTest {
     private WebDriver driver;
-    String employeeID, employeeFirstName, employeeLastName, employeeImage, editFirstName, editLastName;
+    String employeeID, employeeFirstName, employeeLastName, editFirstName, editLastName;
     String driverLicenseNumber, licenseExpiryDate, nationality, maritalStatus, dateOfBirth, gender;
-    String pdfFile, docsFile, excelFile, overLimitedImg;
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
         driver = getBrowserDriver(webUrl, browserName);
+        faker = DataFakerConfig.getFaker();
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 
-        employeeFirstName = "Bui";
-        employeeLastName = "Hang";
+        employeeFirstName = faker.getFirstName();
+        employeeLastName = faker.getLastName();
 
-        employeeImage = "lshopping.png";
-        pdfFile = "Doraemon_Long_Stories_v07.PDF";
-        docsFile = "Don_de_nghi_sat_hach.docx";
-        excelFile = "Bai_test.xlsx";
-        overLimitedImg = "4MB_img.jpg";
-
-        editFirstName = "Le";
-        editLastName = "Mai";
-        driverLicenseNumber = "12345678";
-        licenseExpiryDate = "2030-09-09";
+        editFirstName = faker.getFirstName();
+        editLastName = faker.getLastName();
+        driverLicenseNumber = faker.getNumberTenDigits();
+        licenseExpiryDate = faker.getDate();
         nationality = "Vietnamese";
         maritalStatus = "Single";
-        dateOfBirth = "2000-09-09";
+        dateOfBirth = faker.getDateOfBirth();
         gender = "Female";
 
         loginPage.enterToUsernameTextbox(GlobalConstants.ADMIN_ORANGEHRM_USERNAME);
@@ -76,34 +66,7 @@ public class Login_15_Live_Code extends BaseTest {
     }
 
     @Test
-    public void Employee_02_Upload_Image() {
-        personalDetailPage.clickToEmployeeImage();
-
-        // upload file type not allow
-        personalDetailPage.uploadMultipleFiles(driver, excelFile);
-        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
-        personalDetailPage.uploadMultipleFiles(driver, docsFile);
-        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
-        personalDetailPage.uploadMultipleFiles(driver, pdfFile);
-        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "File type not allowed");
-
-        // upload file over maximum
-        personalDetailPage.uploadMultipleFiles(driver, overLimitedImg);
-        verifyEquals(personalDetailPage.getUploadFileErrorMessage(), "Attachment Size Exceeded");
-
-        // upload success
-        Dimension beforeUpload = personalDetailPage.getEmployeeSize();
-
-        personalDetailPage.uploadMultipleFiles(driver, employeeImage);
-        personalDetailPage.clickToSaveButtonAtProfileContainer();
-
-        verifyTrue(personalDetailPage.isSuccessToastMessageDisplayed(driver));
-        personalDetailPage.isLoadingSpinnerDisappear(driver);
-        verifyTrue(personalDetailPage.isUploadEmployeeImageSuccess(beforeUpload));
-    }
-
-    @Test
-    public void Employee_03_Edit_Information() {
+    public void Employee_02_Edit_Information() {
         personalDetailPage.openEditNavigatorByNames("Personal Details");
         personalDetailPage.isLoadingSpinnerDisappear(driver);
 
@@ -139,6 +102,7 @@ public class Login_15_Live_Code extends BaseTest {
     private ContactDetailPageObject contactDetailPage;
     private JobPageObject jobPage;
     private DependentsPageObject dependentsPage;
+    private DataFakerConfig faker;
 
     @AfterClass
     public void afterClass() {

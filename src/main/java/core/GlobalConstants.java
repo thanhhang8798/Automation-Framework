@@ -2,7 +2,7 @@ package core;
 
 public class GlobalConstants {
     // wait infor
-    public static final int LONG_TIMEOUT = 20;
+    public static final int LONG_TIMEOUT = 10;
     public static final int SHORT_TIMEOUT = 5;
 
     // system infor
@@ -12,8 +12,10 @@ public class GlobalConstants {
         // hoặc viết ngắn gọn thành: public static final String SEPARATOR = "file.seperator";
 
     // download/ upload file
-    public static final String UPLOAD_PATH = PROJECT_PATH  + SEPARATOR + "uploadFiles" + SEPARATOR;
-    public static final String DOWNLOAD_PATH = PROJECT_PATH  + SEPARATOR + "downloadFiles" + SEPARATOR;
+    public static final String UPLOAD_PATH = PROJECT_PATH + SEPARATOR + "uploadFiles" + SEPARATOR;
+    public static final String DOWNLOAD_PATH = PROJECT_PATH + SEPARATOR + "downloadFiles" + SEPARATOR;
+    public static final String DATA_FILE_PATH = PROJECT_PATH + SEPARATOR + "src" + SEPARATOR + "test" + SEPARATOR + "resources" + SEPARATOR + "testdata" + SEPARATOR;
+    public static final String ENVIRONMENT_CONFIG_PATH = PROJECT_PATH + SEPARATOR + "src" + SEPARATOR + "test" + SEPARATOR + "resources" + SEPARATOR + "config" + SEPARATOR;
 
     // nopcommerce
     public static final String ADMIN_NOPCOMMERCE_EMAIL = "thanhhang8798@gmail.com";

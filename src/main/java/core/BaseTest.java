@@ -104,11 +104,31 @@ public class BaseTest {
                 throw new RuntimeException("Browser name is invalid");
         }
 
+        // 1 file xml cho nhiều môi trường
+//        driver.get(getEnvironment(webUrl));
         driver.get(webUrl);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.manage().window().maximize();
         log.info("================== INIT BROWSER & DRIVER ==================");
         return driver;
+    }
+
+    private String getEnvironment(String envName) {
+        String webUrl = null;
+        switch (envName) {
+            case "local":
+                webUrl = "http://localhost:88/orangehrm/web";
+                break;
+            case "test":
+                webUrl = "http://test/orangehrm/web";
+                break;
+            case "product":
+                webUrl = "https://opensource-demo.orangehrmlive.com/";
+                break;
+            default:
+                throw new RuntimeException("Environment is not value");
+        }
+        return webUrl;
     }
 
     protected void closeBrowser() {

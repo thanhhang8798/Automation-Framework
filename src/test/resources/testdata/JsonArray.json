@@ -1,0 +1,13 @@
+{
+  "name": "Thanh",
+  "position": "Software engineer",
+  "skilltree": [
+    "Java",
+    "Python",
+    "JavaScript"
+  ],
+  "address": {
+    "street": "Nguyen Tuan",
+    "streetNo": "33"
+  }
+}

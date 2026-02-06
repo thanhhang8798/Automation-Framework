@@ -39,3 +39,4 @@ build/
 .DS_Store
 /htmlAllure/
 /logs/
+/hs_err_pid14092.log

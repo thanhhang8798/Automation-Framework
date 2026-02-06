@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
 import pageUIs.orangeHRM.pim.addEmployee.AddEmployeePageUI;
 import pageUIs.BasePageUI;
+import testdata.UserDataLombok;
+import testdata.UserInfo;
+
 
 public class AddEmployeePageObject extends BasePage {
     private WebDriver driver;
@@ -37,6 +40,20 @@ public class AddEmployeePageObject extends BasePage {
         waitElementClickable(driver, AddEmployeePageUI.SAVE_BUTTON);
         clickToElement(driver, AddEmployeePageUI.SAVE_BUTTON);
         waitElementInvisible(driver, BasePageUI.SPINNER_ICON);
+        return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
+    }
+
+    public PersonalDetailPageObject createNewEmployee(UserInfo userInfo) {
+        enterToFirstNameTextbox(userInfo.getEmployeeFirstName());
+        enterToLastNameTextbox(userInfo.getEmployeeLastName());
+        clickToSaveButton();
+        return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
+    }
+
+    public PersonalDetailPageObject createNewEmployeeByLambok(UserDataLombok userInfo) {
+        enterToFirstNameTextbox(userInfo.getEmployeeFirstName());
+        enterToLastNameTextbox(userInfo.getEmployeeLastName());
+        clickToSaveButton();
         return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
     }
 }

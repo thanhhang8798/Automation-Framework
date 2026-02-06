@@ -3,9 +3,10 @@ package pageObjects.orangeHRM.pim.addEmployee;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v140.network.model.DataReceived;
-import pageUIs.orangeHRM.pim.addEmployee.AddEmployeePageUI;
 import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
+import testdata.UserDataLombok;
+import testdata.UserDataLombok;
+import testdata.UserInfo;
 
 public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     private WebDriver driver;
@@ -128,5 +129,23 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
     public String getUploadFileErrorMessage() {
         waitElementVisible(driver, PersonalDetailPageUI.UPLOAD_FILE_ERROR_MESSAGE);
         return getElementText(driver, PersonalDetailPageUI.UPLOAD_FILE_ERROR_MESSAGE);
+    }
+
+    public void editEmployeeInfor(UserInfo userInfo) {
+        enterToFirstNameTextbox(userInfo.getEditFirstName());
+        enterToLastNameTextbox(userInfo.getEditLastName());
+        enterToDriverLicenseNumberTextbox(userInfo.getDriverLicenseNumber());
+        enterToLicenseExpiryDateTextbox(userInfo.getLicenseExpiryDate());
+        enterToDateOfBirthTextbox(userInfo.getDateOfBirth());
+        clickToSaveButtonAtProfileContainer();
+    }
+
+    public void editEmployeeInforByLambok(UserDataLombok userInfo) {
+        enterToFirstNameTextbox(userInfo.getEditFirstName());
+        enterToLastNameTextbox(userInfo.getEditLastName());
+        enterToDriverLicenseNumberTextbox(userInfo.getDriverLicenseNumber());
+        enterToLicenseExpiryDateTextbox(userInfo.getLicenseExpiryDate());
+        enterToDateOfBirthTextbox(userInfo.getDateOfBirth());
+        clickToSaveButtonAtProfileContainer();
     }
 }

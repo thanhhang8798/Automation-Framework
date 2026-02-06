@@ -1,7 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="OrangeHRM - UI automation test" verbose="1">
-    <parameter name="webUrl" value="http://localhost:88/orangehrm"></parameter>
+    <parameter name="webUrl" value="product"></parameter>
+    <parameter name="environment" value="product"></parameter>
 
     <listeners>
         <listener class-name="core.MethodListener"></listener>
@@ -12,16 +13,16 @@
     <test name="Run on Chrome browser">
         <parameter name="browser" value="CHROME"></parameter>
         <classes>
-            <class name="orangehrm.Login_09_Dynamic_Locator"/>
+            <class name="orangehrm.Login_24_Environment_Owner_Xml"/>
         </classes>
     </test>
 
-    <test name="Run on Edge browser">
-        <parameter name="browser" value="EDGE"></parameter>
-        <classes>
-            <class name="orangehrm.Login_09_Dynamic_Locator"/>
-        </classes>
-    </test>
+<!--    <test name="Run on Edge browser">-->
+<!--        <parameter name="browser" value="EDGE"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="orangehrm.Login_09_Dynamic_Locator"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 
 </suite>

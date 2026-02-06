@@ -1,0 +1,11 @@
+{
+  "Register": {
+    "fullname": "Automation testing"
+  },
+  "Login": {
+    "username": "Automation",
+    "password": "123456"
+  },
+  "firstname": "Automation",
+  "lasname": "Test"
+}
