@@ -23,7 +23,7 @@ public class Login_16_Data_Faker extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
         faker = DataFakerConfig.getFaker();
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);

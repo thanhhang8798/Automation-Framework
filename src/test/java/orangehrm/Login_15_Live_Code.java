@@ -28,7 +28,7 @@ public class Login_15_Live_Code extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 

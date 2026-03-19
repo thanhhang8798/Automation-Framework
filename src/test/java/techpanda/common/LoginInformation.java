@@ -20,7 +20,7 @@ public class LoginInformation extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeTest
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         homePage = PageGenerator.getPage(HomePO.class, driver);
 

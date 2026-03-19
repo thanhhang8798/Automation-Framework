@@ -21,7 +21,7 @@ public class Login_05_Page_Factory extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         // khi mới mở url thì trang xuất hiện là login
         loginPage = new LoginPageFactory(driver);

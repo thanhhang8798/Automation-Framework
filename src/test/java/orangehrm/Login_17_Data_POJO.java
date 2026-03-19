@@ -22,7 +22,7 @@ public class Login_17_Data_POJO extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 //        userInfo = testdata.UserInfo.getUserData();
         userInfo = UserDataLombok.getUserData();
 

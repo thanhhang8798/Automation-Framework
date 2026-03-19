@@ -22,7 +22,7 @@ public class Topic_07_Assert_Verify extends BaseTest{
         this.userUrl = userUrl;
         this.adminUrl = adminUrl;
 
-        driver = getBrowserDriver(userUrl, browserName);
+        driver = getBrowser(userUrl, browserName);
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
 
         firstName = "Bui";

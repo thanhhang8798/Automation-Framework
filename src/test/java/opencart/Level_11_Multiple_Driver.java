@@ -29,10 +29,10 @@ public class Level_11_Multiple_Driver extends BaseTest {
         email = "buihang" + getRandomNumber() + "@gmail.com";
         userPassword = "Auto111@@@";
 
-        userDriver = getBrowserDriver(userUrl, browserName);
+        userDriver = getBrowser(userUrl, browserName);
         userHomePage = PageGenerator.getPage(UserHomePO.class, userDriver);
 
-        adminDriver = getBrowserDriver(adminUrl, browserName);
+        adminDriver = getBrowser(adminUrl, browserName);
         adminLoginPage = PageGenerator.getPage(AdminLoginPO.class, adminDriver);
     }
 

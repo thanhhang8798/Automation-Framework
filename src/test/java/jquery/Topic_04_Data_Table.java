@@ -17,7 +17,7 @@ public class Topic_04_Data_Table extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         homePage = PageGenerator.getPage(HomePO.class, driver);
     }

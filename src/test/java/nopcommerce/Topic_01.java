@@ -19,7 +19,7 @@ public class Topic_01 extends BaseTest {
     @Parameters({"webUrl","browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
 

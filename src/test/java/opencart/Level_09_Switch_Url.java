@@ -25,7 +25,7 @@ public class Level_09_Switch_Url extends BaseTest {
         this.adminUrl = adminUrl;
 
         // mở browser lên là trang user
-        driver = getBrowserDriver(userUrl, browserName);
+        driver = getBrowser(userUrl, browserName);
         userHomePage = PageGenerator.getPage(UserHomePO.class, driver);
 
         firstName = "Bui";

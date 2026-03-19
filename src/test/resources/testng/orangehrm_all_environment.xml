@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM - UI automation test" verbose="1">
+    <parameter name="serverName" value="product"></parameter>
+    <parameter name="environment" value="LOCAL"></parameter>
+
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+        <listener class-name="reportConfig.AllureTestListener"></listener>
+<!--        <listener class-name="jiraConfigs.JiraListener"></listener>-->
+    </listeners>
+
+    <test name="Run on Chrome browser">
+        <parameter name="browser" value="CHROME"></parameter>
+        <classes>
+            <class name="orangehrm.Login_30_Factory_Environment"/>
+        </classes>
+    </test>
+
+
+</suite>

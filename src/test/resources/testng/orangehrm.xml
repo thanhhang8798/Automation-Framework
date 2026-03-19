@@ -13,7 +13,7 @@
     <test name="Run on Chrome browser">
         <parameter name="browser" value="CHROME"></parameter>
         <classes>
-            <class name="orangehrm.Login_24_Environment_Owner_Xml"/>
+            <class name="orangehrm.Login_29_Factory_Browser"/>
         </classes>
     </test>
 

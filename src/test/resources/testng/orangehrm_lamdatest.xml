@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OrangeHRM - UI automation test" verbose="1">
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+        <listener class-name="reportConfig.AllureTestListener"></listener>
+    </listeners>
+
+    <parameter name="environment" value="product"></parameter>
+
+    <test name="Run on Chrome browser - Window 10">
+        <parameter name="platformName" value="Windows 10"></parameter>
+        <parameter name="browserName" value="CHROME"></parameter>
+        <parameter name="browserVer" value="123.0"></parameter>
+        <classes>
+            <class name="orangehrm.Login_28_CloudTesting_LamdaTest"/>
+        </classes>
+    </test>
+
+    <test name="Run on firefox browser - Linux">
+        <parameter name="platformName" value="Linux"></parameter>
+        <parameter name="browserName" value="firefox"></parameter>
+        <parameter name="browserVer" value="123.0"></parameter>
+        <classes>
+            <class name="orangehrm.Login_28_CloudTesting_LamdaTest"/>
+        </classes>
+    </test>
+
+    <test name="Run on edge browser - Window 11">
+        <parameter name="platformName" value="Windows 11"></parameter>
+        <parameter name="browserName" value="edge"></parameter>
+        <parameter name="browserVer" value="123.0"></parameter>
+        <classes>
+            <class name="orangehrm.Login_28_CloudTesting_LamdaTest"/>
+        </classes>
+    </test>
+
+
+
+</suite>

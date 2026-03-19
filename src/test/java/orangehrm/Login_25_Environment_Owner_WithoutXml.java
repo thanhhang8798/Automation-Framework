@@ -24,7 +24,7 @@ public class Login_25_Environment_Owner_WithoutXml extends BaseTest {
 
         // khởi tạo instance cho interface EnvironmentConfig
         environmentConfig = ConfigFactory.create(EnvironmentConfig.class);
-        driver = getBrowserDriver(environmentConfig.getAppUrl(), browserName);
+        driver = getBrowser(environmentConfig.getAppUrl(), browserName);
         System.out.println("url: " + environmentConfig.getAppUrl());
     }
 

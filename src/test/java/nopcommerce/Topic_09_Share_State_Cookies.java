@@ -1,7 +1,6 @@
 package nopcommerce;
 
 import core.BaseTest;
-import core.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -23,7 +22,7 @@ public class Topic_09_Share_State_Cookies extends BaseTest{
         this.userUrl = userUrl;
         this.adminUrl = adminUrl;
 
-        driver = getBrowserDriver(userUrl, browserName);
+        driver = getBrowser(userUrl, browserName);
         userHomePage = PageGenerator.getPage(UserHomePageObject.class, driver);
 
         // pre-condition: login by cookie

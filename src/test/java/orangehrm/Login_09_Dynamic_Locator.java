@@ -25,7 +25,7 @@ public class Login_09_Dynamic_Locator extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 

@@ -15,7 +15,7 @@ public class Topic_07_Upload_Files extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
         homePage = PageGenerator.getPage(HomePO.class, driver);
         firstImage = "lshopping.png";
         secondImage = "ScreenshotAnime.jpg";

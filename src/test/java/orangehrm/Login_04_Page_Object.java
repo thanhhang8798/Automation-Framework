@@ -19,7 +19,7 @@ public class Login_04_Page_Object extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         // khi mới mở url thì trang xuất hiện là login
         loginPage = new LoginPageObject(driver);

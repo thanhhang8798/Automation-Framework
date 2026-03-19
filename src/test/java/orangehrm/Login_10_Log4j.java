@@ -24,7 +24,7 @@ public class Login_10_Log4j extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 

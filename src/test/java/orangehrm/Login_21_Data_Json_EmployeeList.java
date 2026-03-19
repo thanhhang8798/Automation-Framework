@@ -6,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import testdata.DataJsonArray;
 import testdata.EmployeeListJson;
 
 public class Login_21_Data_Json_EmployeeList extends BaseTest {
@@ -16,7 +15,7 @@ public class Login_21_Data_Json_EmployeeList extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
         employeeListInfo = EmployeeListJson.getEmployeeList();
 
         for (EmployeeListJson.Employee employee : employeeListInfo.getEmployees()) {

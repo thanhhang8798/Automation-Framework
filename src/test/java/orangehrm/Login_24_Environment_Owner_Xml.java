@@ -21,7 +21,7 @@ public class Login_24_Environment_Owner_Xml extends BaseTest {
 
         // khởi tạo instance cho interface EnvironmentConfig
         environmentConfig = ConfigFactory.create(EnvironmentConfig.class);
-        driver = getBrowserDriver(environmentConfig.getAppUrl(), browserName);
+        driver = getBrowser(environmentConfig.getAppUrl(), browserName);
         System.out.println("url: " + environmentConfig.getAppUrl());
     }
 

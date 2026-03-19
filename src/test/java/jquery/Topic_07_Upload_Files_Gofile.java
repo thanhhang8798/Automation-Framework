@@ -9,14 +9,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.jquery.GoFilePO;
-import pageObjects.jquery.HomePO;
 
 public class Topic_07_Upload_Files_Gofile extends BaseTest {
 
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
         goFilePage = PageGenerator.getPage(GoFilePO.class, driver);
         firstImage = "lshopping.png";
         secondImage = "ScreenshotAnime.jpg";

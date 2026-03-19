@@ -3,16 +3,11 @@ package orangehrm;
 import core.BasePage;
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class Login_03_Multiple_Browser extends BaseTest {
     private WebDriver driver;
@@ -24,7 +19,7 @@ public class Login_03_Multiple_Browser extends BaseTest {
     public void beforeClass(String webUrl, String browserName) {
         this.webUrl = webUrl;
         basePage= BasePage.getInstance();
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
     }
 
     @Test

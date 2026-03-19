@@ -13,7 +13,6 @@ import pageObjects.orangeHRM.LoginPageObject;
 import pageObjects.orangeHRM.pim.addEmployee.AddEmployeePageObject;
 import pageObjects.orangeHRM.pim.addEmployee.PersonalDetailPageObject;
 import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
-import testdata.DataJson;
 import testdata.ExcelConfig;
 
 public class Login_22_Data_Excel extends BaseTest {
@@ -24,7 +23,7 @@ public class Login_22_Data_Excel extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
         excelConfig = ExcelConfig.getExcelData();
         excelConfig.switchToSheet("data");
 

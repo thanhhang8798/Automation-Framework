@@ -24,7 +24,7 @@ public class Topic_01_Cookie extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         this.cookies = LoginInformation.cookies;
 

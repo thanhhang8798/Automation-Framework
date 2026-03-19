@@ -28,7 +28,7 @@ public class Login_14_Override_Timeout extends BaseTest {
     @Parameters({"webUrl", "browser"})
     @BeforeClass
     public void beforeClass(String webUrl, String browserName) {
-        driver = getBrowserDriver(webUrl, browserName);
+        driver = getBrowser(webUrl, browserName);
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
 
