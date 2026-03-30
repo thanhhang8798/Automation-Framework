@@ -20,4 +20,6 @@ public class PersonalDetailPageUI {
     public static final String MARITAL_STATUS_SELECTED_DROPDOWN = "xpath=//label[text()='Marital Status']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']";
     public static final String UPLOAD_FILE_ERROR_MESSAGE = "CSS=span.oxd-input-field-error-message";
 
+    public static final String EMPLOYEE_LIST_LINK = "xpath=//a[text()='Employee List']";
+
 }

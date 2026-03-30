@@ -3,7 +3,10 @@ package pageObjects.orangeHRM.pim.addEmployee;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
+import pageObjects.orangeHRM.pim.employeeList.EmployeeListPageObject;
 import pageUIs.orangeHRM.pim.addEmployee.PersonalDetailPageUI;
+import pageUIs.orangeHRM.pim.employeeList.EmployeeListPageUI;
 import testdata.UserDataLombok;
 import testdata.UserDataLombok;
 import testdata.UserInfo;
@@ -147,5 +150,11 @@ public class PersonalDetailPageObject extends EditEmployeeNavigationPO {
         enterToLicenseExpiryDateTextbox(userInfo.getLicenseExpiryDate());
         enterToDateOfBirthTextbox(userInfo.getDateOfBirth());
         clickToSaveButtonAtProfileContainer();
+    }
+
+    public EmployeeListPageObject clickToEmployeeListLink() {
+        waitElementClickable(driver, PersonalDetailPageUI.EMPLOYEE_LIST_LINK);
+        clickToElement(driver, PersonalDetailPageUI.EMPLOYEE_LIST_LINK);
+        return PageGenerator.getPage(EmployeeListPageObject.class, driver);
     }
 }
