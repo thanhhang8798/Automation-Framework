@@ -162,7 +162,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/config/${environment}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng/${environment}.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
                     <!-- Argument -->

@@ -348,6 +348,7 @@ public class BasePage {
     private void overrideGlobalTimeout(WebDriver driver, long timeInSecond) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeInSecond));
     }
+
     public boolean isElementUndisplayed(WebDriver driver, String locator) {
         System.out.println("Start time = " + new Date().toString());
         overrideGlobalTimeout(driver, SHORT_TIMEOUT);
@@ -441,10 +442,6 @@ public class BasePage {
         return ((JavascriptExecutor) driver).executeScript(javaScript);
     }
 
-    public void scrollToBottomPage(WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,document.body.scrollHeight)");
-    }
-
     public void hightlightElement(WebDriver driver, String locator) {
         WebElement element = getWebElement(driver, locator);
         String originalStyle = getElementDOMAttribute(driver, locator, "style");
@@ -476,6 +473,10 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getWebElement(driver, locator));
     }
 
+    public void scrollToBottomPage(WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+
     public String getAttributeInDOM(WebDriver driver, String locator, String attributeName) {
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].getAttribute('" + attributeName + "');", getWebElement(driver, locator));
     }
@@ -491,7 +492,7 @@ public class BasePage {
     }
 
     public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
-        // lấy ra đường dẫ của thư mục upload file
+        // lấy ra đường dẫn của thư mục upload file
         String filePath = GlobalConstants.UPLOAD_PATH;
         String fullFileName = "";
         for (String file : fileNames) {

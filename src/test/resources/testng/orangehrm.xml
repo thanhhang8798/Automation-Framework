@@ -12,7 +12,7 @@
     <test name="Run on Chrome browser">
         <parameter name="browser" value="CHROME"></parameter>
         <classes>
-            <class name="orangehrm.Login_32_Database"/>
+            <class name="orangehrm.Login_31_Parallel_Testing"/>
         </classes>
     </test>
 </suite>
