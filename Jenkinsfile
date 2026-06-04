@@ -10,9 +10,12 @@ node {
         // Run the build. You must have Maven installed.
         bat 'mvn clean'
     }
-    stage('3 - Runtest') {
+    stage('3 - Run test') {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        bat 'mvn test'
+        bat """
+        mvn test ^
+         -Dbrowser=${params.BROWSER}
+        """
         }
     }
     stage('4 - Public report') {
